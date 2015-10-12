@@ -1,8 +1,8 @@
 #!/bin/bash
 # Monero Update script
 
-#Get user name
-u="$USER"
+./dep_list.sh
+
 #proc=1 #modify to use script below if unit has more memory
 
 #Determine number of available hardware threads
@@ -15,11 +15,11 @@ u="$USER"
 #                $proc=1
 #        fi
 
-MEM=`free -m | grep Mem | awk '{print $2}'`
-GBMEM=$[$MEM/1000]
-echo $GBMEM
+#MEM=`free -m | grep Mem | awk '{print $2}'`
+#GBMEM=$[$MEM/1000]
+#echo $GBMEM
 
-#cd /home/$u/bitmonero
-#git pull
-#make release-static-64 -j $proc
+cd /home/$u/bitmonero
+git pull
+make
 
