@@ -34,7 +34,5 @@ do
 		9) ./pool_config.sh;;
 		r) exit ;;
 	esac
-        echo -e "Press enter to continue \c"
-        read input
 	clear
 done

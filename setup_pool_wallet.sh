@@ -59,8 +59,6 @@ read input2
 
 # WRITE CONF FILE AND MOVE TO /etc/init/
 
-current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
-
 echo -e  "start on started bitmonero \n\
 stop on stopping bitmonero \n\
 console log \n\

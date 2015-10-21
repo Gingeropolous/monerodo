@@ -12,8 +12,8 @@ first_time="$(awk '{print;}' /monerodo/first_time.txt)"
 if [ "$first_time" = 'yes' ]; then
 	echo "This must be your first time using the Monerodo. You will be asked to setup some files."
 	echo "Please enter the sudo password if requested"
-	./setup_pool_wallet.sh
 	./change_password.sh
+	./setup_pool_wallet.sh
 	echo "no" > /monerodo/first_time.txt
 fi
 
@@ -49,7 +49,5 @@ do
 		6) ./viewkey.sh;;
 		q) exit ;;
 	esac
-	echo -e "Press enter to continue \c"
-	read input
 	clear
 done

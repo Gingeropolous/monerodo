@@ -1,0 +1,8 @@
+Monerodo Architecture Information
+
+As of 0.1, the software is not engineered with many fault tolerances. I.e., if you don't have the expected user behavior, the software will not have
+the expected software behavior. These can all be eventually addressed.
+
+Currently the Monerodo OS assumes that all of the daemons are already installed, as this OS is meant to be the front end for the Monerodo, a hardware
+device that runs a full monero node and mining pool. Thus, the scripts are made to modify existing software, not add it. A full Monerodo creation
+script can be developed.

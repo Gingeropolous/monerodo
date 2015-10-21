@@ -9,7 +9,7 @@ do
 	echo "Manage Monero Settings"
 
 	echo "================="
-	echo "[0] Change all mining address to the same address"
+	echo "[0] Set mining address"
 	echo "[1] Change Nvidia GPU mining settings"
 	echo "[2] Change AMD GPU mining settings"
 	echo "[3] Change onboard video mining settings"
@@ -20,7 +20,7 @@ do
 	echo -e "Enter your selection \c"
 	read answer
 	case "$answer" in
-		0) ./monero_allsameadd.sh;;
+		0) ./monero_mine_address.sh;;
 		1) ./nvidia_settings.sh;;
 		2) ./AMD_settings.sh;;
 		3) ./onboard_gpu.sh;;
