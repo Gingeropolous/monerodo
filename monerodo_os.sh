@@ -14,6 +14,8 @@ if [ "$first_time" = 'yes' ]; then
 	echo "Please enter the sudo password if requested"
 	./change_password.sh
 	./setup_pool_wallet.sh
+	./monero_mine_address.sh
+	rm /monerodo/first_time.txt
 	echo "no" > /monerodo/first_time.txt
 fi
 
