@@ -9,11 +9,12 @@ echo "It is HIGHLY recommended that your pool wallet is different than your prim
 echo "Your pool wallet is where pool fees are deposited and from where pool payouts are made"
 echo "You will now create a new pool wallet. Please remember the name and password for your wallet."
 echo ""
-echo  -e "When you are done creating the wallet, type exit and hit enter"
+echo "When you are done creating the wallet, type exit and hit enter"
 echo ""
 echo "Press enter to continue"
 read input
 ./monero_simplewallet.sh
+clear
 
 echo "You have now created a new pool wallet."
 test_add=0
@@ -21,7 +22,7 @@ while ((test_add == 0))
 do
 	echo "For your reference, these are the available wallets in your wallet directory."
 	echo "------------------------------------------------"
-	cd /home/$u/wallets/
+	cd /monerodo/wallets/
 	dir *.bin
 	echo "------------------------------------------------"
 	echo ""
@@ -59,11 +60,25 @@ read input2
 
 # WRITE CONF FILE AND MOVE TO /etc/init/
 
-echo -e  "start on started bitmonero \n\
-stop on stopping bitmonero \n\
+sudo service mos_monerowallet stop
+
+echo -e  "start on started mos_bitmonero \n\
+stop on stopping mos_bitmonero \n\
 console log \n\
-chdir /home/bob/bitmonero/build/release/bin \n\
-exec ./simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /home/bob/wallets/$poolwallet --password $poolpass \n\
-" >> monerowallet.conf
-sudo cp monerowallet.conf /etc/init/
+exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass \n\
+" >> /home/"$USER"/monerodo/conf_files/mos_monerowallet.conf
+sudo cp mos_monerowallet.conf /etc/init/
+
+# modify pool address in config.json in local monerodo directory and copy to pool directory
+
+old_pool="$(awk '{print;}' /monerodo/pool_add.txt)"
+new_pool="$(awk '{print;}' /monerodo/wallets/$poolwallet.address.txt)"
+
+if [[$old_pool != $new_pool ]]; then
+        sed -i -e 's/$old_pool/$new_pool/g' /home/"$USER"/monerodo/conf_files/config.json
+	sudo cp /home/"$USER"/monerodo/conf_files/config.json /monerodo/sam_pool/
+	rm /home/"$USER"/monerodo/conf_files/pool_add.txt
+	echo $new_pool > /home/"$USER"/monerodo/conf_files/pool_add.txt
+	sudo cp /home/"$USER"/monerodo/conf_files/pool_add.txt /monerodo/
+fi
 

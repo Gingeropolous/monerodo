@@ -9,17 +9,17 @@ do
 	echo "Manage Nvidia settings"
 	echo "================="
 	echo ""
-	echo"!!!!!!!! THE POOL MUST BE ON FOR THIS MINER TO WORK!!!!!"
+	echo "!!!!!THE POOL MUST BE ON FOR THIS TO WORK!!!!"
 	echo ""
-	echo "[1] Turn NVIDIA miner on now and on boot"
-	echo "[2] Turn NVIDIA miner off"
+	echo "[1] Turn CPU miner on now and on boot"
+	echo "[2] Turn CPU miner off"
 	echo "[r] Return to device management menu"
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer
 	case "$answer" in
-		1) ./nvidia_on.sh;;
-		2) ./nvidia_off.sh;;
+		1) ./xmrcpu_on.sh;;
+		2) ./xmrcpu_off.sh;;
 		r) exit ;;
 	esac
 	clear

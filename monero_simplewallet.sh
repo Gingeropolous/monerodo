@@ -1,7 +1,7 @@
 #!/bin/bash
 #MONERODO open simplewallet
 clear
-cd /home/$u/wallets/
+cd /monerodo/wallets/
 
 echo "You are now using the Monero core simplewallet program"
 echo "========================="
@@ -12,5 +12,5 @@ echo "***AVAILABLE WALLETS*****"
 dir *.bin
 echo "========================="
 echo ""
-/home/$u/bitmonero/build/release/bin/simplewallet --daemon-host $current_ip 
+sudo simplewallet --daemon-host $current_ip 
 

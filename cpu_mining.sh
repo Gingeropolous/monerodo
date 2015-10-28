@@ -7,7 +7,7 @@
 #echo "Or work on Monerodo yourself! https://github.com/Gingeropolous/monerodo "
 
 cd /home/$u/monerodo/conf_files/
-rm cpuminer.conf
+rm mos_cpuminer.conf
 
 #Use half of available cores for CPU mining
 n=$(nproc)
@@ -21,17 +21,20 @@ fi
 less /proc/cpuinfo > cpuinfo.txt
 
 if [ $"grep aes cpuinfo.txt" ] ;
-then echo -e  "start on started poolnode \n\
+then echo -e  "start on started mos_poolnode \n\
 stop on stopping poolnode \n\
 console log \n\
 chdir /monerodo/cpuminer/cpuminer-multi/ \n\
 exec ./minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
-" >> cpuminer.conf
+" >> mos_cpuminer.conf
 else
-echo -e  "start on started poolnode \n\
+echo -e  "start on started mos_poolnode \n\
 stop on stopping poolnode \n\
 console log \n\
 chdir /monerodo/yam/ \n\
 exec ./yam -c x -M stratum+tcp://$mine_add:x@$current_ip:3333/xmr \n\
-" >> cpuminer.conf
+" >> mos_cpuminer.conf
 
+echo "Settings have been updated" 
+echo "Press return to continue"
+read go

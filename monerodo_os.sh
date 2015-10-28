@@ -6,17 +6,24 @@ export u="$USER"
 export current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 
 
-######### Checks if this is first time running, forces change of password and setting up pool wallet
+######### Checks if this is first time running, forces change of password and other important settings
 
 first_time="$(awk '{print;}' /monerodo/first_time.txt)"
 if [ "$first_time" = 'yes' ]; then
 	echo "This must be your first time using the Monerodo. You will be asked to setup some files."
 	echo "Please enter the sudo password if requested"
 	./change_password.sh
+	clear
 	./setup_pool_wallet.sh
+	clear
 	./monero_mine_address.sh
-	rm /monerodo/first_time.txt
-	echo "no" > /monerodo/first_time.txt
+	rm /home/$u/monerodo/conf_files/first_time.txt
+	echo "no" > /home/$u/monerodo/conf_files/first_time.txt
+	sudo cp /home/$u/monerodo/conf_files/first_time.txt /monerodo/
+	clear
+	echo "Please goto device management to activate the pool and miner."
+	echo "Press enter to continue"
+	read input 
 fi
 
 #Bring scripts up to date.
@@ -39,6 +46,7 @@ do
 	echo "[5] Restore your account from mneumonic seed"
 	echo "[6] Generate view only wallet from viewkey"
 	echo "[q] Quit to the terminal"
+	echo "[u] Update device info"
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer
@@ -50,6 +58,7 @@ do
 		5) ./restore.sh;;
 		6) ./viewkey.sh;;
 		q) exit ;;
+		u) echo "bah BLAM";;
 	esac
 	clear
 done

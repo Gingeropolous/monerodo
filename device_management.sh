@@ -4,6 +4,7 @@
 #Menu
 while true
 do
+	clear
 	echo "================="
 	echo "Device Management Submenu"
 	echo "================="
@@ -34,5 +35,4 @@ do
 		9) ./pool_config.sh;;
 		r) exit ;;
 	esac
-	clear
 done

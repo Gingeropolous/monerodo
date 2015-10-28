@@ -26,6 +26,9 @@ cd /home/"$USER"/bitmonero
 git pull
 make
 
+# Copy binaries to /bin
 #Restart service to use new binaries
-sudo service bitmonero stop
-sudo service bitmonero start
+sudo service mos_bitmonero stop
+sudo cp /home/"$USER"/bitmonero/build/release/bin/bitmonerod /bin
+sudo cp /home/"$USER"/bitmonero/build/release/bin/simplewallet /bin
+sudo service mos_bitmonero start

@@ -9,7 +9,9 @@ echo "Then enter a new password when prompted. "
 echo ""
 echo "It is recommended to get a good random password from random.org"
 passwd
-
+echo "Password change process complete. If it was not successful, please run again"
+echo "Press enter to continue"
+read goback
 
 
 
