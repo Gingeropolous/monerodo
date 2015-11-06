@@ -46,7 +46,6 @@ do
 	echo "[5] Restore your account from mneumonic seed"
 	echo "[6] Generate view only wallet from viewkey"
 	echo "[q] Quit to the terminal"
-	echo "[u] Update device info"
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer
@@ -58,7 +57,6 @@ do
 		5) ./restore.sh;;
 		6) ./viewkey.sh;;
 		q) exit ;;
-		u) echo "bah BLAM";;
 	esac
 	clear
 done
