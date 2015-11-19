@@ -9,7 +9,7 @@ do
 	echo "Manage Nvidia settings"
 	echo "================="
 	echo ""
-	echo"!!!!!!!! THE POOL MUST BE ON THE SOLO MINER TO WORK!!!!!"
+	echo "!!!!!!!! THE POOL MUST BE ON FOR THE SOLO MINER TO WORK!!!!!"
 	echo ""
 	echo "You can only use either solo or external pool on the same hardware"
 	echo "So you can setup CPU to external pool, and nvidia to solo pool"

@@ -1,0 +1,6 @@
+modify the log to use zgrep when the logfile is compressed
+setup the logrotator for simplewallet.log
+add log view for redis
+add case instance for all input text variables for back and help
+create help string that prints out help commands
+add a function to list available wallets and create a directory of wallets with names and current balances

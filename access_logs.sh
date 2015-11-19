@@ -23,5 +23,7 @@ do
 		4) ./xmr_cpuminer_log.sh;;
 		r) exit ;;
 	esac
+	echo "Press return to continue"
+	read goback
 	clear
 done

@@ -8,6 +8,10 @@ rm /home/$u/monerodo/conf_files/mine_add.txt
 echo "Please enter your monero mining address"
 echo "(Reminder: shift+insert is paste)"
 read mine_add
+
+case "$mine_add" in
+back) exit ;;
+*)
 export mine_add
 echo $mine_add > /home/$u/monerodo/conf_files/mine_add.txt
 sudo cp /home/$u/monerodo/conf_files/mine_add.txt /monerodo/
@@ -86,3 +90,5 @@ exec ./yamgeneric -c x -t $n -M stratum+tcp://$ext_mine:x@$current_ip:3333/xmr \
 " > mos_ext_cpuminer.conf
 fi
 clear
+;;
+esac

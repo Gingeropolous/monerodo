@@ -14,8 +14,7 @@ do
 	echo "[3] Change onboard video mining settings"
 	echo "[4] Change CPU mining settings"
 	echo "[5] Change pool settings"
-	echo "[u] Update monero core"
-	echo "[s] See monero daemon status"
+	echo "[6] Change Monero core settings"
 	echo "[r] Return to device management menu"
 	echo -e "\n"
 	echo -e "Enter your selection \c"
@@ -27,8 +26,7 @@ do
 		3) ./onboard_gpu.sh;;
 		4) ./xmrcpu_settings.sh;;
 		5) ./xmr_pool_settings.sh;;
-		u) ./monero_update.sh;;
-		s) ./monero_info.sh;;
+		6) ./xmr_settings.sh;;
 		r) exit ;;
 	esac
 	clear
