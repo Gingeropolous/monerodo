@@ -1,0 +1,2 @@
+# deletes p2pstate.bin once a month
+0 0 1 * 1-5 /home/bob/monerodo/xmr_delete_p2pstate.sh

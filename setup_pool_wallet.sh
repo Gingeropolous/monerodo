@@ -74,7 +74,7 @@ sudo cp mos_monerowallet.conf /etc/init/
 old_pool="$(awk '{print;}' /monerodo/pool_add.txt)"
 new_pool="$(awk '{print;}' /monerodo/wallets/$poolwallet.address.txt)"
 
-if [[$old_pool != $new_pool ]]; then
+if [[ $old_pool != $new_pool ]]; then
         sed -i -e 's/$old_pool/$new_pool/g' /home/"$USER"/monerodo/conf_files/config.json
 	sudo cp /home/"$USER"/monerodo/conf_files/config.json /monerodo/sam_pool/
 	rm /home/"$USER"/monerodo/conf_files/pool_add.txt

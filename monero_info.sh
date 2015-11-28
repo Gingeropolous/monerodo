@@ -16,7 +16,7 @@ do
 	echo "[2] Print peer list"
 	echo "[r] Return to monero settings menu"
 	echo -e "\n"
-	echo -e "Enter your selection \c"
+	echo -e "Enter your selection"
 	echo "Or leave blank and press enter to update info"
 	read answer
 	case "$answer" in
