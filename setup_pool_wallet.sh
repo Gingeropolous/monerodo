@@ -38,6 +38,7 @@ do
 		y) test_add=1 ;;
 	esac
 	clear
+	#The below check was commented out due to the poor performance of the refresh. Could work back in thanks to new optimizations. 
 	#echo "We will now test your information to confirm that your pool wallet works properly"
 	#echo "Simplewallet will load and attempt to open your wallet using the information you provided"
 	#echo "If the wallet loads correctly, please type exit to exit simplewallet and return to setup"
@@ -61,6 +62,7 @@ read input2
 # WRITE CONF FILE AND MOVE TO /etc/init/
 
 sudo service mos_monerowallet stop
+rm /home/bob/monerodo/conf_files/mos_monerowallet.conf
 
 echo -e  "start on started mos_bitmonero \n\
 stop on stopping mos_bitmonero \n\
