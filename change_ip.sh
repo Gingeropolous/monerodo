@@ -7,7 +7,7 @@ last_ip="$(awk '{print;}' /monerodo/last.ip)"
 current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 
 
-if [[$current_ip != $last_ip ]]; then
+if [[ $current_ip != $last_ip ]]; then
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_bitmonero.conf
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_monerowallet.conf
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_miner.conf

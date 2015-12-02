@@ -31,7 +31,7 @@ fi
 echo "Performing git pull from repository"
 cd /home/$u/monerodo/
 #REMOVE COMMENT BELOW WHEN RELEASE SOFTWARE!!!
-#git pull
+git pull
 chmod +x *.sh
 
 #Menu
