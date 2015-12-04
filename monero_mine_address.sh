@@ -28,9 +28,11 @@ rm /home/$u/monerodo/conf_files/mos_miner.conf
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
+respawn \n\
+respawn limit 10 10 \n\
 chdir /etc/ccminer-cryptonight \n\
 exec ./ccminer -l 8x60 -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
-" >> /home/$u/monerodo/conf_files/mos_miner.conf
+" > /home/$u/monerodo/conf_files/mos_miner.conf
 
 # write conf file for nvidia external pool miner
 
@@ -39,9 +41,11 @@ rm /home/$u/monerodo/conf_files/mos_ext_miner.conf
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
+respawn \n\
+respawn limit 10 10 \n\
 chdir /etc/ccminer-cryptonight \n\
 exec ./ccminer -l 8x60 -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
-" >> /home/$u/monerodo/conf_files/mos_ext_miner.conf
+" > /home/$u/monerodo/conf_files/mos_ext_miner.conf
 
 
 #write conf files for cpu miner
@@ -66,12 +70,16 @@ then
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
+respawn \n\
+respawn limit 10 10 \n\
 chdir /monerodo/cpuminer/cpuminer-multi/ \n\
 exec ./minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
 " > mos_cpuminer.conf
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
+respawn \n\
+respawn limit 10 10 \n\
 chdir /monerodo/cpuminer/cpuminer-multi/ \n\
 exec ./minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
 " > mos_ext_cpuminer.conf
@@ -79,12 +87,16 @@ else
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
+respawn \n\
+respawn limit 10 10 \n\
 chdir /monerodo/yam/ \n\
 exec ./yamgeneric -c x -t $n -M stratum+tcp://$mine_add:x@$current_ip:3333/xmr \n\
 " > mos_cpuminer.conf
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
+respawn \n\
+respawn limit 10 10 \n\
 chdir /monerodo/yam/ \n\
 exec ./yamgeneric -c x -t $n -M stratum+tcp://$ext_mine:x@$current_ip:3333/xmr \n\
 " > mos_ext_cpuminer.conf

@@ -67,8 +67,10 @@ rm /home/bob/monerodo/conf_files/mos_monerowallet.conf
 echo -e  "start on started mos_bitmonero \n\
 stop on stopping mos_bitmonero \n\
 console log \n\
+respawn \n\
+respawn limit 10 10 \n\
 exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass \n\
-" >> /home/"$USER"/monerodo/conf_files/mos_monerowallet.conf
+" > /home/"$USER"/monerodo/conf_files/mos_monerowallet.conf
 sudo cp mos_monerowallet.conf /etc/init/
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
