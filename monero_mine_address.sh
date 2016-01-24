@@ -14,7 +14,7 @@ back) exit ;;
 *)
 export mine_add
 echo $mine_add > /home/bob/monerodo/conf_files/mine_add.txt
-sudo cp /home/$u/monerodo/conf_files/mine_add.txt /monerodo/
+sudo cp /home/bob/monerodo/conf_files/mine_add.txt /monerodo/
 
 echo "Do you want to setup an external pool?"
 echo "If yes, enter the address. etc: monerohash.com"
