@@ -1,7 +1,6 @@
 #!/bin/bash
 #MONERODO Change Password
 
-u="$USER"
 
 echo "Please enter the current password. If this is the first time,"
 echo "then enter the password provided with the Monerodo instructions."

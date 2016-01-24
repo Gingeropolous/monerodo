@@ -3,5 +3,5 @@
 #stop any existing miner instance and copy new autostart file and start miner
 echo "Please enter your password if required"
 sudo service mos_ext_miner stop
-sudo cp /home/$u/monerodo/conf_files/mos_ext_miner.conf /etc/init/
+sudo cp /home/bob/monerodo/conf_files/mos_ext_miner.conf /etc/init/
 sudo service mos_ext_miner start

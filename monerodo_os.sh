@@ -2,7 +2,7 @@
 #MONERODO operating script to load upon login
 
 #make username variable global
-export u="$USER"
+export u="$USER" #should be deprecated by now, all instances replaced with bob
 export current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 export help="Type 'back' to return to previous menu"
 
@@ -18,9 +18,9 @@ if [ "$first_time" = 'yes' ]; then
 	./setup_pool_wallet.sh
 	clear
 	./monero_mine_address.sh
-	rm /home/$u/monerodo/conf_files/first_time.txt
-	echo "no" > /home/$u/monerodo/conf_files/first_time.txt
-	sudo cp /home/$u/monerodo/conf_files/first_time.txt /monerodo/
+	rm /home/bob/monerodo/conf_files/first_time.txt
+	echo "no" > /home/bob/monerodo/conf_files/first_time.txt
+	sudo cp /home/bob/monerodo/conf_files/first_time.txt /monerodo/
 	clear
 	echo "Please goto device management to activate the pool and miner."
 	echo "Press enter to continue"
@@ -29,7 +29,7 @@ fi
 
 #Bring scripts up to date.
 echo "Performing git pull from repository"
-cd /home/$u/monerodo/
+cd /home/bob/monerodo/
 #REMOVE COMMENT BELOW WHEN RELEASE SOFTWARE!!!
 git pull
 chmod +x *.sh

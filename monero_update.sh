@@ -1,7 +1,7 @@
 #!/bin/bash
 # Monero Update script
 
-cd /home/"$USER"/monerodo/
+cd /home/bob/monerodo/
 git pull
 chmod +x *.sh
 ./dep_list.sh
@@ -22,13 +22,13 @@ chmod +x *.sh
 #echo $GBMEM
 #Pull repository for updates and compile
 
-cd /home/"$USER"/bitmonero
+cd /home/bob/bitmonero
 git pull
 make
 
 # Copy binaries to /bin
 #Restart service to use new binaries
 sudo service mos_bitmonero stop
-sudo cp /home/"$USER"/bitmonero/build/release/bin/bitmonerod /bin
-sudo cp /home/"$USER"/bitmonero/build/release/bin/simplewallet /bin
+sudo cp /home/bob/bitmonero/build/release/bin/bitmonerod /bin
+sudo cp /home/bob/bitmonero/build/release/bin/simplewallet /bin
 sudo service mos_bitmonero start

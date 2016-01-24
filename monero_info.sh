@@ -8,9 +8,10 @@ do
 	echo "Get info on the Monero daemon"
 	echo "================="
 	echo "!!!!!!!! Status of deamon !!!!!!!!!!"
-	bitmonerod --rpc-bind-ip $current_ip print_status
-	echo ">>>>>>>> BLOCK HEIGHT <<<<<<<<<"
-	bitmonerod --rpc-bind-ip $current_ip print_height
+	bitmonerod --rpc-bind-ip $current_ip status
+	#bitmonerod --rpc-bind-ip $current_ip print_status
+	#echo ">>>>>>>> BLOCK HEIGHT <<<<<<<<<"
+	#bitmonerod --rpc-bind-ip $current_ip print_height
 	echo "other options coming soon"
 	echo "[1] Print connections"
 	echo "[2] Print peer list"

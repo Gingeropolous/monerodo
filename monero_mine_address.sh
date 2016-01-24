@@ -4,7 +4,7 @@
 
 clear
 #receive new mining address, export to global MOS variable, and store in MOS system folder
-rm /home/$u/monerodo/conf_files/mine_add.txt 
+rm /home/bob/monerodo/conf_files/mine_add.txt 
 echo "Please enter your monero mining address"
 echo "(Reminder: shift+insert is paste)"
 read mine_add
@@ -13,7 +13,7 @@ case "$mine_add" in
 back) exit ;;
 *)
 export mine_add
-echo $mine_add > /home/$u/monerodo/conf_files/mine_add.txt
+echo $mine_add > /home/bob/monerodo/conf_files/mine_add.txt
 sudo cp /home/$u/monerodo/conf_files/mine_add.txt /monerodo/
 
 echo "Do you want to setup an external pool?"
@@ -23,7 +23,7 @@ read ext_mine
 
 # write conf file for nvidia miner
 
-rm /home/$u/monerodo/conf_files/mos_miner.conf
+rm /home/bob/monerodo/conf_files/mos_miner.conf
 
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
@@ -32,11 +32,11 @@ respawn \n\
 respawn limit 10 10 \n\
 chdir /etc/ccminer-cryptonight \n\
 exec ./ccminer -l 8x60 -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
-" > /home/$u/monerodo/conf_files/mos_miner.conf
+" > /home/bob/monerodo/conf_files/mos_miner.conf
 
 # write conf file for nvidia external pool miner
 
-rm /home/$u/monerodo/conf_files/mos_ext_miner.conf
+rm /home/bob/monerodo/conf_files/mos_ext_miner.conf
 
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
@@ -45,12 +45,12 @@ respawn \n\
 respawn limit 10 10 \n\
 chdir /etc/ccminer-cryptonight \n\
 exec ./ccminer -l 8x60 -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
-" > /home/$u/monerodo/conf_files/mos_ext_miner.conf
+" > /home/bob/monerodo/conf_files/mos_ext_miner.conf
 
 
 #write conf files for cpu miner
 
-cd /home/$u/monerodo/conf_files/
+cd /home/bob/monerodo/conf_files/
 rm mos_cpuminer.conf
 
 #Use half of available cores for CPU mining

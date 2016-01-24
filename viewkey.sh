@@ -1,7 +1,7 @@
 #!/bin/bash
 #MONERODO open simplewallet
 clear
-cd /home/$u/wallets/viewonly/
+cd /home/bob/wallets/viewonly/
 
 echo "You are now using the Monero core simplewallet program"
 echo "========================="
@@ -19,6 +19,6 @@ echo "Please enter the name of the file for this view only wallet"
 echo "example: myviewonlywallet.bin"
 read vkeyfile
 
-/home/$u/bitmonero/build/release/bin/simplewallet --daemon-host $monerodo_ip --generate-from-view-key $addr:$vkey:$vkeyfile
+simplewallet --daemon-host 192.168.1.199 --generate-from-view-key $addr:$vkey:$vkeyfile
 
 

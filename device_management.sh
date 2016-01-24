@@ -14,7 +14,7 @@ do
 	echo "[3] Access logs"
 	echo "[4] Modify Monero settings"
 	echo "[5] Copy wallet files from external drive"
-	echo "[6] Manage pool configuration"
+	#echo "[6] Manage pool configuration"
 	echo "[s] View daemon status"
 	echo "[r] Return to main menu"
 	echo -e "\n"
@@ -27,7 +27,7 @@ do
 		3) ./access_logs.sh;;
 		4) ./monero_settings.sh;;
 		5) ./copy_files.sh;;
-		6) ./pool_config.sh;;
+		#6) ./pool_config.sh;;
 		s) ./monero_info.sh;;
 		r) exit ;;
 	esac
