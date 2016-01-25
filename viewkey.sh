@@ -19,6 +19,6 @@ echo "Please enter the name of the file for this view only wallet"
 echo "example: myviewonlywallet.bin"
 read vkeyfile
 
-simplewallet --daemon-host 192.168.1.199 --generate-from-view-key $addr:$vkey:$vkeyfile
+simplewallet --daemon-host $current_ip --generate-from-view-key $addr:$vkey:$vkeyfile
 
 

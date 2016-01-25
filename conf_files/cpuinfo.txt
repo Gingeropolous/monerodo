@@ -32,7 +32,7 @@ model		: 55
 model name	: Intel(R) Celeron(R) CPU  J1800  @ 2.41GHz
 stepping	: 8
 microcode	: 0x811
-cpu MHz		: 1332.881
+cpu MHz		: 1332.786
 cache size	: 1024 KB
 physical id	: 0
 siblings	: 2
