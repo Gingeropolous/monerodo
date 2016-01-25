@@ -22,7 +22,8 @@ do
 	case "$answer" in
 		1) ./xmr_file_management.sh;;
 		2) sudo service mos_bitmonero stop;;
-		3) sudo service mos_bitmonero start;;
+		3) sudo cp /home/bob/monerodo/conf_files/mos_bitmonero.conf /etc/init/
+sudo service mos_bitmonero start;;
 		4) ./xmr_rate_change.sh;;
 		5) ./xmr_unmanaged.sh;;
 		ucomp) ./monero_update.sh;;

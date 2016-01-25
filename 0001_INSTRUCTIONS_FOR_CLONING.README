@@ -1,0 +1,11 @@
+If you are going to clone your modifications of the Monerodo image to make
+a new-user friendly image (using the respin thing), you have to clean things up and move files around.
+First, the mos_newkeys.conf has to be moved from the 
+/home/bob/monerodo/conf_files into /etc/init/, so that the SSH keys are created on new install.
+Otherwise, its impossible to get into the headless box.
+
+Generally gut all log files possible, and any wallet files that were created.
+
+You should remove all mos_* files from /etc/init/ so that the new user can configure their system before it launches.
+
+you also have to change /monerodo/first_time.txt to yes. After it runs the first time, it is changed to no. 
