@@ -44,7 +44,7 @@ do
 	echo "[2] Manage or create your account with Monero Core"
 	echo "[3] Manage or create your account with Monerodo Guided Wallet"
 	echo "[4] Make QR codes"
-	echo "[5] Restore your account from mneumonic seed"
+	echo "[5] Restore your account from mnemonic seed"
 	echo "[6] Generate view only wallet from viewkey"
 	echo "[q] Quit to the terminal"
 	echo -e "\n"
