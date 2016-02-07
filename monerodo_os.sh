@@ -34,6 +34,27 @@ cd /home/bob/monerodo/
 git pull
 chmod +x *.sh
 
+# UPDATE SECTION
+
+#20160206 update for redis conf file
+
+./UPDATE_redis20160206.sh
+
+
+
+
+
+
+
+
+
+
+
+
+# ------------------------ END OF HEADER -------------------------
+
+
+
 #Menu
 while true
 do
