@@ -8,7 +8,7 @@ if [ "$fix" != 'fixed' ]; then
         echo "Please enter the sudo password if requested"
 
 	sudo apt-get install openssl shellinabox
-	sudo service shellinaboxd start
+	sudo service shellinabox start
 	sudo ufw allow 4200
 
 	# log that this has been done so won't do again
