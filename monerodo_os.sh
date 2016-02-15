@@ -27,18 +27,22 @@ if [ "$first_time" = 'yes' ]; then
 	read input 
 fi
 
-#Bring scripts up to date.
+######## Bring scripts up to date. #################################################################
+
 echo "Performing git pull from repository"
 cd /home/bob/monerodo/
 #REMOVE COMMENT BELOW WHEN RELEASE SOFTWARE!!!
 git pull
 chmod +x *.sh
 
-# UPDATE SECTION
+######## UPDATE SECTION ###########################################################################
 
 #20160206 update for redis conf file
+#20160215 update to install shellinabox
+
 
 ./UPDATE_redis20160206.sh
+./UPDATE_shellinabox.sh #20150215
 
 
 

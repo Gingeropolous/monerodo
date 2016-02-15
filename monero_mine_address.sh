@@ -2,6 +2,8 @@
 #MONERODO Change  miner address
 #
 
+current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')" 
+
 clear
 #receive new mining address, export to global MOS variable, and store in MOS system folder
 rm /home/bob/monerodo/conf_files/mine_add.txt 
