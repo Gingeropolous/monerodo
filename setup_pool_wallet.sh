@@ -71,14 +71,32 @@ respawn \n\
 respawn limit 10 10 \n\
 exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass \n\
 " > /home/bob/monerodo/conf_files/mos_monerowallet.conf
-sudo cp mos_monerowallet.conf /etc/init/
+sudo cp /home/bob/monerodo/conf_files/mos_monerowallet.conf /etc/init/
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
 
 old_pool="$(awk '{print;}' /monerodo/pool_add.txt)"
-new_pool="$(awk '{print;}' /monerodo/wallets/$poolwallet.address.txt)"
+ext=".address.txt"
+new_pool="$(awk '{print;}' /monerodo/wallets/$poolwallet$ext)"
+new_line="\"poolAddress\": \"$new_pool\","
 
-sudo sed 's/.*poolAddress.*/"poolAddress": "$new_pool",/' config.json
+
+
+sed -i "s/^poolAddress.*/$new_line/" /home/bob/monerodo/conf_files/config.json
+
+#echo $old_pool
+#echo $ext
+#echo $new_pool
+echo "This was the line entered into your config.json for your pool server"
+echo $new_line
+
+sudo cp /home/bob/monerodo/conf_files/config.json /monerodo/sam_pool/
+
+
+echo "Press enter to continue"
+read input3
+
+
 
 #Old style, left in incase newstyle bugs out
 #if [[ $old_pool != $new_pool ]]; then

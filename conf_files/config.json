@@ -17,7 +17,7 @@
     "poolServer": {
         "enabled": true,
         "clusterForks": "auto",
-        "poolAddress": "49TvbRcRezcdG76KMtG8AFXhrsRZSU2VCaurruD6VNaLgsozMvbF94n8eQZXbDPvRUAiuubcYnFQk7o58FQxAkua9r4ZA2P",
+"poolAddress": "49ckoVNyw5fScz1t9RrUqXUk16m4eRKvAczgDxo6V7D3WKCWp5MAxQoUXf42kzqL1sWBFR2hwS5daAFgyGXqngenNqTPYY8",
         "blockRefreshInterval": 1000,
         "minerTimeout": 900,
         "ports": [
@@ -96,7 +96,7 @@
     },
 
     "daemon": {
-        "host": "192.168.1.8",
+        "host": "192.168.1.199",
         "port": 18081	
     },
 
