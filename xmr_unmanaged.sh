@@ -15,9 +15,9 @@ do
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer
-	echo "Enter upload rate (2000)"
+	echo "Enter upload rate (standard is 2)"
 	read upload
-	echo "Enter download rate (2000)"
+	echo "Enter download rate (standard 8)"
 	read dload
 	case "$answer" in
 		UN)
@@ -33,8 +33,8 @@ respawn \n\
 respawn limit 10 10 \n\
 \n\
 exec bitmonerod --detach --rpc-bind-ip $current_ip --limit-rate-up $upload --limit-rate-down $download --enforce-dns-checkpointing
-" > /home/bob/monerodo/conf_files/mos_bitmonero.conf
-sudo cp mos_bitmonero.conf /etc/init/
+" > $FILEDIR/mos_bitmonero.conf
+sudo cp $FILEDIR/mos_bitmonero.conf /etc/init/
 
 sudo service mos_bitmonero start
 		;;
@@ -53,8 +53,8 @@ respawn \n\
 respawn limit 10 10 \n\
 \n\
 exec bitmonerod --detach --rpc-bind-ip $current_ip --limit-rate-up $upload --limit-rate-down $download
-" > /home/bob/monerodo/conf_files/mos_bitmonero.conf
-sudo cp mos_bitmonero.conf /etc/init/
+" > $FILEDIR/mos_bitmonero.conf
+sudo cp $FILEDIR/mos_bitmonero.conf /etc/init/
 
 sudo service mos_bitmonero start
                 ;;

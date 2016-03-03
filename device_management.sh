@@ -8,12 +8,6 @@ do
 	echo "================="
 	echo "Device Management Submenu"
 	echo "================="
-	echo "NOTE: When you turn a service on and off"
-	echo "(example: miner or pool server) you may"
-	echo "need to reconfigure those conf files."
-	echo "Sorry for the inconvenience. I'm trying"
-	echo "to find a way around this."
-	echo "================="
 	echo "[0] Setup pool wallet"
 	echo "[1] Change password for user account"
 	echo "[2] Switch to active view mode (good for debugging)"
@@ -22,6 +16,7 @@ do
 	echo "[5] Copy wallet files from external drive"
 	#echo "[6] Manage pool configuration"
 	echo "[s] View daemon status"
+	echo "[m] Manual update scripts"
 	echo "[r] Return to main menu"
 	echo -e "\n"
 	echo -e "Enter your selection \c"
@@ -34,6 +29,7 @@ do
 		4) ./monero_settings.sh;;
 		5) ./copy_files.sh;;
 		#6) ./pool_config.sh;;
+		m) ./manual_update.sh;;
 		s) ./monero_info.sh;;
 		r) exit ;;
 	esac

@@ -6,9 +6,10 @@ current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut 
 
 clear
 #receive new mining address, export to global MOS variable, and store in MOS system folder
-rm $FILEDIR/mine_add.txt 
+rm /home/bob/monerodo/conf_files/mine_add.txt 
 echo "Please enter your monero mining address"
 echo "(Reminder: shift+insert is paste)"
+echo "You can type back to exit this script"
 read mine_add
 
 case "$mine_add" in
@@ -16,7 +17,7 @@ back) exit ;;
 *)
 export mine_add
 echo $mine_add > $FILEDIR/mine_add.txt
-sudo cp $FILEDIR/mine_add.txt /monerodo/ #again, might be able to keep in home hidden
+sudo cp $FILEDIR/mine_add.txt /monerodo/
 
 echo "Do you want to setup an external pool?"
 echo "If yes, enter the address. etc: monerohash.com"
@@ -76,7 +77,7 @@ console log \n\
 respawn \n\
 respawn limit 10 10 \n\
 chdir /monerodo/cpuminer/cpuminer-multi/ \n\
-exec sudo ./minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
+exec ./minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_cpuminer.conf
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
@@ -84,7 +85,7 @@ console log \n\
 respawn \n\
 respawn limit 10 10 \n\
 chdir /monerodo/cpuminer/cpuminer-multi/ \n\
-exec sudo ./minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
+exec ./minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_ext_cpuminer.conf
 else
 echo -e  "start on started mos_poolnode \n\

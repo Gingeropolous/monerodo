@@ -1,6 +1,7 @@
 #!/bin/bash
 #MONERODO script to setup pool wallet
 
+FILEDIR=$(grep -n 'filedir' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
 
 echo "This script configures your Monerodo with a new pool wallet."
@@ -22,8 +23,7 @@ while ((test_add == 0))
 do
 	echo "For your reference, these are the available wallets in your wallet directory."
 	echo "------------------------------------------------"
-	cd /monerodo/wallets/
-	dir *.bin
+	dir /monerodo/wallets/*.bin
 	echo "------------------------------------------------"
 	echo ""
 	echo "Please enter the name of your pool wallet and then press enter - example: mypoolwallet.bin"
@@ -58,11 +58,12 @@ clear
 echo "You have succesfully created a pool wallet. We will now create the .conf file that will load simplewallet on boot."
 echo "Press enter to continue. At some point during the process, you will be asked to enter your UNIX password."
 read input2
-
+echo "We are stopping existing services. Please be patient"
 # WRITE CONF FILE AND MOVE TO /etc/init/
 
+
 sudo service mos_monerowallet stop
-rm /home/bob/monerodo/conf_files/mos_monerowallet.conf
+mv $FILEDIR/mos_monerowallet.conf $FILEDIR/mos_monerowallet.previous
 
 echo -e  "start on started mos_bitmonero \n\
 stop on stopping mos_bitmonero \n\
@@ -70,27 +71,28 @@ console log \n\
 respawn \n\
 respawn limit 10 10 \n\
 exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass \n\
-" > /home/bob/monerodo/conf_files/mos_monerowallet.conf
-sudo cp /home/bob/monerodo/conf_files/mos_monerowallet.conf /etc/init/
+" > $FILEDIR/mos_monerowallet.conf
+sudo cp $FILEDIR/mos_monerowallet.conf /etc/init/
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
 
 old_pool="$(awk '{print;}' /monerodo/pool_add.txt)"
 ext=".address.txt"
 new_pool="$(awk '{print;}' /monerodo/wallets/$poolwallet$ext)"
+echo "This is your new pool wallet address: "$new_pool
 new_line="\"poolAddress\": \"$new_pool\","
 
-
-
-sed -i "s/^poolAddress.*/$new_line/" /home/bob/monerodo/conf_files/config.json
+sed -i "s/.*poolAddress.*/$new_line/" $FILEDIR/config.json
 
 #echo $old_pool
 #echo $ext
 #echo $new_pool
 echo "This was the line entered into your config.json for your pool server"
 echo $new_line
+echo "This is the line in your config.json"
+sudo cp $FILEDIR/config.json /monerodo/sam_pool/
+grep "poolAddress" $FILEDIR/config.json
 
-sudo cp /home/bob/monerodo/conf_files/config.json /monerodo/sam_pool/
 
 
 echo "Press enter to continue"
@@ -98,12 +100,4 @@ read input3
 
 
 
-#Old style, left in incase newstyle bugs out
-#if [[ $old_pool != $new_pool ]]; then
-#        sed -i -e 's/$old_pool/$new_pool/g' /home/bob/monerodo/conf_files/config.json
-#	sudo cp /home/bob/monerodo/conf_files/config.json /monerodo/sam_pool/
-#	rm /home/bob/monerodo/conf_files/pool_add.txt
-#	echo $new_pool > /home/bob/monerodo/conf_files/pool_add.txt
-#	sudo cp /home/bob/monerodo/conf_files/pool_add.txt /monerodo/
-#fi
 
