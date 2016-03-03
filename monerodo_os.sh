@@ -30,16 +30,11 @@ fi
 
 ######## Bring scripts up to date. #################################################################
 
-echo "Performing git pull from repository"
-cd /home/bob/monerodo/
-
-Moved update to user-initiated action. 
-
-#git pull
-#chmod +x *.sh
+#Moved update to user-initiated action. 
 
 ######## UPDATE SECTION ###########################################################################
 
+#20160301 update for v1r3
 #20160206 update for redis conf file
 #20160215 update to install shellinabox
 
