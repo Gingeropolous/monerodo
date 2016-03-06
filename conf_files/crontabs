@@ -1,2 +1,4 @@
+#20160305 This has hopefully been removed. I think this was here just to document. 
+
 # deletes p2pstate.bin once a month
 0 0 1 * 1-5 /home/bob/monerodo/xmr_delete_p2pstate.sh

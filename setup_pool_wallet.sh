@@ -23,7 +23,9 @@ while ((test_add == 0))
 do
 	echo "For your reference, these are the available wallets in your wallet directory."
 	echo "------------------------------------------------"
-	dir /monerodo/wallets/*.bin
+	cd /monerodo/wallets/
+	dir *.bin
+	cd /home/bob/monerodo/
 	echo "------------------------------------------------"
 	echo ""
 	echo "Please enter the name of your pool wallet and then press enter - example: mypoolwallet.bin"
@@ -58,7 +60,7 @@ clear
 echo "You have succesfully created a pool wallet. We will now create the .conf file that will load simplewallet on boot."
 echo "Press enter to continue. At some point during the process, you will be asked to enter your UNIX password."
 read input2
-echo "We are stopping existing services. Please be patient"
+echo "We are stopping running services. Please be patient"
 # WRITE CONF FILE AND MOVE TO /etc/init/
 
 

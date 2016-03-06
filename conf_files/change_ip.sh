@@ -14,7 +14,7 @@ if [[ $current_ip != $last_ip ]]; then
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_monerowallet.conf
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_miner.conf
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_cpuminer.conf
-	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/sam_pool/config.json
+	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/zone_pool/config.json
 	
 	# Changes any inactive mos_conf files in the mos directory
 

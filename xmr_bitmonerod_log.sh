@@ -1,7 +1,7 @@
 #!/bin/bash
 #This accesses the log file for the monero daemon
 
-echo "Read old logs or new logs (old / new)"
+echo "Read old logs, new logs, or watch live (old / new/ live)"
 read ans
 
 case "$ans" in
@@ -19,4 +19,9 @@ echo "How old of a file do you want to see? 1 = newest, 7 = oldest"
 read old
 sudo zcat /.bitmonero/bitmonero.log.$old.gz | tail -n $lines
 ;;
+live) 
+echo "REMEMBER TO EXIT USING CTRL-C"
+sudo tail -f /.bitmonero/bitmonero.log
+;;
+
 esac

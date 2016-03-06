@@ -7,6 +7,9 @@ export current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}'
 export help="Type 'back' to return to previous menu"
 export FILEDIR=$(grep -n 'filedir' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
+#### Duh
+
+cd /home/bob/monerodo/
 
 ######### Checks if this is first time running, forces change of password and other important settings
 
