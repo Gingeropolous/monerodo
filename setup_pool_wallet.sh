@@ -72,6 +72,7 @@ stop on stopping mos_bitmonero \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
+post-start exec sh -c 'tail -n +0 --pid=$$ -f /var/log/upstart/mos_monerowallet.log | { sed "/Run net_service/ q" && kill $$ ;}' \n\
 exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass \n\
 " > $FILEDIR/mos_monerowallet.conf
 sudo cp $FILEDIR/mos_monerowallet.conf /etc/init/

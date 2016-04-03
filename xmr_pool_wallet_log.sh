@@ -20,7 +20,9 @@ read old
 sudo zcat /var/log/upstart/mos_monerowallet.log.$old.gz | tail -n $lines
 ;;
 live)
-echo "USE CTRL-C TO EXIT"
+echo "#############################"
+echo  -e "\033[33;5;7mREMEMBER TO EXIT USING CTRL-C\033[0m"
+echo "#############################"
 sudo tail -f /var/log/upstart/mos_monerowallet.log
 ;;
 

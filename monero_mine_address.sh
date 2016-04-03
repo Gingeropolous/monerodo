@@ -20,7 +20,7 @@ sudo cp $FILEDIR/mine_add.txt /monerodo/ #again, might be able to keep in home h
 
 echo "Do you want to setup an external pool?"
 echo "If yes, enter the address. etc: monerohash.com"
-echo "If you don't want to set on, just hit enter"
+echo "If you don't want to set one, just hit enter"
 read ext_mine
 
 # write conf file for nvidia miner
