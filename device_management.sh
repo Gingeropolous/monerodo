@@ -16,6 +16,7 @@ do
 	echo "[5] Copy wallet files from external drive"
 	#echo "[6] Manage pool configuration"
 	echo "[s] View daemon status"
+	echo "[m] Manual update scripts"
 	echo "[r] Return to main menu"
 	echo -e "\n"
 	echo -e "Enter your selection \c"
@@ -28,6 +29,7 @@ do
 		4) ./monero_settings.sh;;
 		5) ./copy_files.sh;;
 		#6) ./pool_config.sh;;
+		m) ./manual_update.sh;;
 		s) ./monero_info.sh;;
 		r) exit ;;
 	esac

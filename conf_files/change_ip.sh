@@ -6,6 +6,10 @@
 last_ip="$(awk '{print;}' /monerodo/last.ip)"
 current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 
+# var api = "http://192.168.1.151:8117";
+# The above line is in the var/www/website file and needs to be addressed
+# These all need to be changed to the replace whole line approach to avoid last IP conflicts
+# Could also change it with the if same, do nothing, otherwise execute
 
 if [[ $current_ip != $last_ip ]]; then
 	sudo service mos_bitmonero stop
@@ -14,7 +18,7 @@ if [[ $current_ip != $last_ip ]]; then
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_monerowallet.conf
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_miner.conf
 	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_cpuminer.conf
-	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/sam_pool/config.json
+	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/zone_pool/config.json
 	
 	# Changes any inactive mos_conf files in the mos directory
 

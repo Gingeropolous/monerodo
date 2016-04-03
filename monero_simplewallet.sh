@@ -15,3 +15,4 @@ echo "========================="
 echo ""
 sudo simplewallet --daemon-host $current_ip 
 
+cd /home/bob/monerodo
