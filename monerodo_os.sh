@@ -37,15 +37,7 @@ fi
 
 ######## UPDATE SECTION ###########################################################################
 
-#20160301 update for v1r3
-#20160206 update for redis conf file
-#20160215 update to install shellinabox
-
-
-./UPDATE_redis20160206.sh
-./UPDATE_shellinabox.sh #20160215
-./UPDATE_r3comp.sh #20160301
-
+#Cleaned slate for updates compared for nvidia version
 
 
 
@@ -60,7 +52,7 @@ fi
 while true
 do
 	echo "================="
-	echo "Monerodo Menu. Version 1r3."
+	echo "Monerodo Menu. AMD Branch. v1"
 	echo "================="
 	echo "[1] Monerodo device management"
 	echo "[2] Manage or create your account with Monero Core"
