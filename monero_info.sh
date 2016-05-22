@@ -25,4 +25,5 @@ do
 		2) bitmonerod --rpc-bind-ip $current_ip print_pl;;
 		r) exit ;;
 	esac
+	clear
 done

@@ -16,6 +16,10 @@ do
 	case "$answer" in
 		1) git pull
 chmod +x *.sh
+echo "You monerodo OS has been updated. To see some changes you will need to exit the OS and then start it again by typing monerodo"
+echo "Press return to continue"
+read continue
+exit ;;
 ;;
 		r) exit ;;
 	esac

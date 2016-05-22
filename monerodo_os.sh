@@ -12,24 +12,10 @@ export FILEDIR=$(grep -n 'filedir' /home/bob/monerodo/conf_files/monerodo.index 
 cd /home/bob/monerodo/
 
 ######### Checks if this is first time running, forces change of password and other important settings
+# Put into its own script 20160518
 
-first_time="$(awk '{print;}' /monerodo/first_time.txt)"
-if [ "$first_time" = 'yes' ]; then
-	echo "This must be your first time using the Monerodo. You will be asked to setup some files."
-	echo "Please enter the sudo password if requested"
-	./change_password.sh
-	clear
-	./setup_pool_wallet.sh
-	clear
-	./monero_mine_address.sh
-	rm $FILEDIR/first_time.txt
-	echo "no" > $FILEDIR/first_time.txt
-	sudo cp $FILEDIR/first_time.txt /monerodo/ #could probably just keep this in the home hidden directory
-	clear
-	echo "Please goto device management to activate the pool and miner."
-	echo "Press enter to continue"
-	read input 
-fi
+./first_time.sh
+
 
 ######## Bring scripts up to date. #################################################################
 
@@ -40,11 +26,11 @@ fi
 #20160301 update for v1r3
 #20160206 update for redis conf file
 #20160215 update to install shellinabox
+#20160518 Cleared existing updates
 
-
-./UPDATE_redis20160206.sh
-./UPDATE_shellinabox.sh #20160215
-./UPDATE_r3comp.sh #20160301
+#./UPDATE_redis20160206.sh
+#./UPDATE_shellinabox.sh #20160215
+#./UPDATE_r3comp.sh #20160301
 
 
 
@@ -60,7 +46,7 @@ fi
 while true
 do
 	echo "================="
-	echo "Monerodo Menu. Version 1r3."
+	echo "Monerodo Menu. Version 1r4"
 	echo "================="
 	echo "[1] Monerodo device management"
 	echo "[2] Manage or create your account with Monero Core"
