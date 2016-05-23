@@ -33,8 +33,7 @@ pre-start exec nvidia-persistenced \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
-chdir /etc/ccminer-cryptonight \n\
-exec ./ccminer -l 8x60 -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
+exec ccminer -l 8x60 -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
 " > $FILEDIR/mos_miner.conf
 
 # write conf file for nvidia external pool miner
@@ -47,8 +46,7 @@ pre-start exec nvidia-persistenced \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
-chdir /etc/ccminer-cryptonight \n\
-exec ./ccminer -l 8x60 -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
+exec ccminer -l 8x60 -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
 " > $FILEDIR/mos_ext_miner.conf
 
 
@@ -75,16 +73,14 @@ stop on stopping mos_poolnode \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
-chdir /monerodo/cpuminer/cpuminer-multi/ \n\
-exec sudo ./minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
+exec sudo minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_cpuminer.conf
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
-chdir /monerodo/cpuminer/cpuminer-multi/ \n\
-exec sudo ./minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
+exec minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_ext_cpuminer.conf
 else
 echo -e  "start on started mos_poolnode \n\
