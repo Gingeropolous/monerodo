@@ -18,15 +18,11 @@ new_line="limit-rate-up="$upload
 new_line2="limit-rate-down="$download
 
 if [ "$(grep limit-rate-up $FILEDIR/bitmonero.conf)" ]; then
-new_line="limit-rate-up="$upload
-new_line2="limit-rate-down="$download
 sed -i "s/.*limit-rate-up.*/$new_line/" $FILEDIR/bitmonero.conf
 sed -i "s/.*limit-rate-down.*/$new_line2/" $FILEDIR/bitmonero.conf
 else
-echo $newline>>$FILEDIR/bitmonero.conf
-echo $newline2>>$FILEDIR/bitmonero.conf
-
+echo $new_line>>$FILEDIR/bitmonero.conf
+echo $new_line2>>$FILEDIR/bitmonero.conf
+fi
 
 ./service_on.sh
-
-

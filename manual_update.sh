@@ -6,7 +6,7 @@ while true
 do
 	clear
 	echo "================="
-	echo "Manage Monerodo Manual Update"
+	echo "Manage Monerodo OS Manual Update"
         echo "================="
 	./important.sh
 	echo "If you are using a Monerodo OS  ISO that was installed before 20160625, please do NOT use this update mechanism"

@@ -33,10 +33,10 @@ export mos_service="mos_bitmonero"
 
 new_line="enforce-dns-checkpointing="
 
-if [ "$(grep $newline $FILEDIR/bitmonero.conf)" ]; then
+if [ "$(grep $new_line $FILEDIR/bitmonero.conf)" ]; then
 sed -i "s/.*$new_line.*/$new_line$checkp/" $FILEDIR/bitmonero.conf
 else
-echo $newline$checkp>>$FILEDIR/bitmonero.conf
+echo $new_line$checkp>>$FILEDIR/bitmonero.conf
 ./service_on.sh
 
 

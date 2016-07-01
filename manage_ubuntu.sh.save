@@ -6,9 +6,9 @@ while true
 do
 	clear
 	echo "================="
-	echo "Device Management Submenu"
+	echo "Manage Ubuntu Updates"
 	echo "================="
-	echo "[1] Change password for user account"
+	echo "[all] Manually update everything (not really recommended)"
 	echo "[2] Access logs"
 	echo "[3] Modify Monero settings"
 	echo "[4] Manage Ubuntu updates"
@@ -21,7 +21,7 @@ do
 	echo -e "Enter your selection \c"
 	read answer
 	case "$answer" in
-		1) ./change_password.sh;;
+		1) sudo apt-get update && sudo apt-get upgrade ;;
 		2) ./access_logs.sh;;
 		3) ./monero_settings.sh;;
 		4) ./manage_ubuntu.sh;;
