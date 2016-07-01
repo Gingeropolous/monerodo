@@ -8,6 +8,11 @@ do
 	echo "================="
 	echo "Manage Monerodo Manual Update"
         echo "================="
+	./important.sh
+	echo "If you are using a Monerodo OS  ISO that was installed before 20160625, please do NOT use this update mechanism"
+	echo "Significant changes were made to the directory structure, and a full conversion process was not created"
+	echo "If you are using a Monerodo OS ISO that you installed prior to 20160625 and would like to upgrade, please email me at gingeropolous@tutanota.com"
+	echo "#####################################" 
 	echo "[1] Update to latest Monerodo version"
 	echo "[r] Return to device management menu"
 	echo -e "\n"
@@ -20,7 +25,7 @@ echo "You monerodo OS has been updated. To see some changes you will need to exi
 echo "Press return to continue"
 read continue
 exit ;;
-;;
+#;;
 		r) exit ;;
 	esac
 	clear

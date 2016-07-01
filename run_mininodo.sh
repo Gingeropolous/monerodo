@@ -14,19 +14,23 @@ do
         echo "===================================="
         echo ""
         echo "[nodo] Turn on MiniNodo server. Your MiniNodo wallet needs to be running"
+	echo "If the line below doesn't say mos_nodowallet is running, then please go back and setup and run your mininodo wallet"
+	sudo service mos_nodowallet status
         echo "[r] Return to device management menu"
         echo -e "\n"
         echo -e "Enter your selection \c"
         read answer
         case "$answer" in
                 nodo)
-		echo "You will be prompted to enter your linux password, followed by a prompt for another password"
+		./important.sh
+		echo "You may be prompted to enter your linux password, followed by a prompt for a second password for your mininodo web wallet"
+		echo "This second password will say prompt:password: . Use a different password than your linux password"
 		echo "This second password is for your MiniNodo server. When you access the wallet from your browswer, this is the password you use"
-		echo "Your MiniNodo wallet can be accessed at wallet.nodebox.link"
+		echo "Your MiniNodo wallet can be accessed at wallet.mynode.link"
 		echo "Got it? Ready to go? Press enter when ready"
 		read letsgo 
 		./ctrlc.sh
-		sudo nodejs /monerodo/MiniNodo/MiniNodo.js 192.168.1.199
+		sudo nodejs /monerodo/MiniNodo/MiniNodo.js -p poop
 ;;
                 r) exit ;;
         esac

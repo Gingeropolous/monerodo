@@ -1,64 +1,43 @@
 #!/bin/bash
-#MONERODO Manage Monero Settings
+#MONERODO script to change rates on 
 
-#Menu
-while true
-do
-	clear
-	echo "================="
-	echo "Monero Management Settings"
-	echo "================="
-	echo "[UN] Run monero core in an extremely unmanaged fashion"
-	echo "	This uses the MoneroPulse system for checkpoints. If your local node doesn't agree, it will trust the MoneroPulse network"
-	echo "[MAN] Run monero core in a self-managed fashion"
-	echo "	This requires you (the user) to stay up to date with the state of the Monero network"
-	echo -e "\n"
-	echo -e "Enter your selection \c"
-	read answer
-	echo "Enter upload rate (standard is 2)"
-	read upload
-	echo "Enter download rate (standard 8)"
-	read dload
-	case "$answer" in
-		UN)
-		# WRITE CONF FILE AND MOVE TO /etc/init/
+echo "Would you like to switch Monero core to unmanaged mode?"
+echo "This makes the core software follow DNS checkpoints that are"
+echo "set in place by the Monero core developers. This way, you don't"
+echo "have to check to make sure your daemon is on the right fork, in"
+echo "case there is a bad network fork for some reason."
+echo ""
 
-sudo service mos_bitmonero stop
+if [ "$(grep enforce-dns-checkpointing=1 $FILEDIR/bitmonero.conf)" ]; then
+echo "DNS checkpointing is on"
+elif [ "$(grep enforce-dns-checkpointing=0 $FILEDIR/bitmonero.conf)" ]; then
+echo "DNS checkpointing is off"
+else echo "DNS checkpointing is not configured. Default is off"
+fi
 
-echo -e  "start on stopped mos_monerodoip \n\
-stop on shutdown \n\
-expect daemon \n\
-\n\
-respawn \n\
-respawn limit 10 10 \n\
-\n\
-exec bitmonerod --detach --rpc-bind-ip $current_ip --limit-rate-up $upload --limit-rate-down $download --enforce-dns-checkpointing
-" > $FILEDIR/mos_bitmonero.conf
-sudo cp $FILEDIR/mos_bitmonero.conf /etc/init/
+echo "Would you like to enforce DNS checkpointing (unmanaged mode)?"
+echo "(yes/no) Type anything else to go back to previous menu"
+echo "Changes will take effect immediately"
 
-sudo service mos_bitmonero start
-		;;
+read answer
+case "$answer" in
+yes)checkp=1;;
+no)checkp=0;;
+*)exit;;
+esac
 
-		MAN) 
+export running=$(service mos_bitmonero status)
+export mos_service="mos_bitmonero"
 
-                # WRITE CONF FILE AND MOVE TO /etc/init/
+./service_off.sh
 
-sudo service mos_bitmonero stop
+new_line="enforce-dns-checkpointing="
 
-echo -e  "start on stopped mos_monerodoip \n\
-stop on shutdown \n\
-expect daemon \n\
-\n\
-respawn \n\
-respawn limit 10 10 \n\
-\n\
-exec bitmonerod --detach --rpc-bind-ip $current_ip --limit-rate-up $upload --limit-rate-down $download
-" > $FILEDIR/mos_bitmonero.conf
-sudo cp $FILEDIR/mos_bitmonero.conf /etc/init/
+if [ "$(grep $newline $FILEDIR/bitmonero.conf)" ]; then
+sed -i "s/.*$new_line.*/$new_line$checkp/" $FILEDIR/bitmonero.conf
+else
+echo $newline$checkp>>$FILEDIR/bitmonero.conf
+./service_on.sh
 
-sudo service mos_bitmonero start
-                ;;
-		r) exit ;;
-	esac
-	clear
-done
+
+

@@ -32,12 +32,6 @@ cd /home/bob/monerodo/
 #./UPDATE_shellinabox.sh #20160215
 #./UPDATE_r3comp.sh #20160301
 
-
-
-
-
-
-
 # ------------------------ END OF HEADER -------------------------
 
 
@@ -48,6 +42,9 @@ do
 	echo "================="
 	echo "Monerodo Menu. Version 1r4"
 	echo "================="
+	cat /home/bob/.monerodo/status.txt
+	echo "================="
+	echo "[0] Recommended things to set up first!"
 	echo "[1] Monerodo device management"
 	echo "[2] Manage or create your account with Monero Core"
 	echo "[3] Manage or create your account with Monerodo Guided Wallet"
@@ -60,6 +57,7 @@ do
 	echo -e "Enter your selection \c"
 	read answer
 	case "$answer" in
+		0) ./hello.sh;;
 		1) ./device_management.sh;;
 		2) ./monero_simplewallet.sh;;
 		3) ./monerodo_wallet.sh;;

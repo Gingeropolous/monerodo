@@ -67,15 +67,16 @@ echo "We are stopping running services. Please be patient"
 sudo service mos_monerowallet stop
 mv $FILEDIR/mos_monerowallet.conf $FILEDIR/mos_monerowallet.previous
 
-echo -e  "start on started mos_bitmonero \n\
+echo -e  "start on bitmonero_sync \n\
 stop on stopping mos_bitmonero \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
+pre-start exec logrotate -f /etc/logrotate.d/upstart \n\
 post-start exec sh -c 'tail -n +0 --pid=$$ -f /var/log/upstart/mos_monerowallet.log | { sed "/Run net_service/ q" && kill $$ ;}' \n\
 exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass \n\
 " > $FILEDIR/mos_monerowallet.conf
-sudo cp $FILEDIR/mos_monerowallet.conf /etc/init/
+#sudo cp $FILEDIR/mos_monerowallet.conf /etc/init/
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
 
@@ -96,8 +97,10 @@ echo "This is the line in your config.json"
 sudo cp $FILEDIR/config.json /monerodo/sam_pool/
 grep "poolAddress" $FILEDIR/config.json
 
+sudo cp $FILEDIR/mos_poolnode.conf /etc/init/
 
-
+echo "======================="
+echo "You'll need to manually turn on the pool in the settings menu"
 echo "Press enter to continue"
 read input3
 

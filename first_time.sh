@@ -1,14 +1,11 @@
 #!/bin/bash
 
-first_time="$(awk '{print;}' /monerodo/first_time.txt)"
+first_time="$(awk '{print;}' $FILEDIR/first_time.txt)"
 if [ "$first_time" = 'yes' ]; then
-        echo "This must be your first time using the Monerodo. You will be asked to setup some files."
+        echo "This must be your first time using the Monerodo."
         echo "Please enter the sudo password if requested"
         ./change_password.sh
         clear
-        ./setup_pool_wallet.sh
-        clear
-        ./monero_mine_address.sh
         rm $FILEDIR/first_time.txt
         echo "no" > $FILEDIR/first_time.txt
         sudo cp $FILEDIR/first_time.txt /monerodo/ #could probably just keep this in the home hidden directory
