@@ -7,6 +7,7 @@ do
 	clear
 	echo "================="
 	echo "Manage Monero Core Settings"
+        cat /home/bob/.monerodo/status.txt
 	echo "================="
 	echo "[1] Monero Core File Management"
 	echo "[2] Turn monero core on"
@@ -34,7 +35,4 @@ do
 		u) ./xmr_update_binaries.sh;;
 		r) exit ;;
 	esac
-	echo "Press return to continue"
-	read wut
-	clear
 done

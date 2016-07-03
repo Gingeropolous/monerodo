@@ -6,6 +6,7 @@ spin='-\|/'
 echo 1 > /dev/shm/mos_status
 i=0
 echo ""
+mos_status=1
 while (( $mos_status==1 ));
 do
   mos_status="$(awk '{print;}' /dev/shm/mos_status)"

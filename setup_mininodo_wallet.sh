@@ -10,7 +10,16 @@ echo "It is HIGHLY recommended that your MiniNodo wallet is different than your 
 echo "Think of your MiniNodo wallet as your actual wallet, and your primary wallet as your bank safe."
 echo "You will now configure your Monerodo to launch MiniNodo with a specific wallet."
 echo ""
-echo "If you already have a wallet, just type it in."
+
+echo "For your reference, these are the available wallets in your wallet directory."
+echo "------------------------------------------------"
+cd /monerodo/wallets/
+dir *.bin
+cd /home/bob/monerodo/
+echo "Do you want to use one of these wallets? yes / no"
+read usewallet
+case $usewallet in
+no)
 ./important.sh
 echo "When you are done, type exit into simplewallet to resume this setup script"
 echo ""
@@ -18,6 +27,9 @@ echo "Press enter to continue"
 read input
 ./monero_simplewallet.sh
 clear
+;;
+yes)echo "Ok then! We'll just use one of these!" ;;
+esac
 
 echo "====== Welcome back! Lets finish setting up your MiniNodo wallet server!"
 test_add=0
@@ -51,18 +63,16 @@ echo "We are stopping running services. Please be patient"
 # WRITE CONF FILE AND MOVE TO /etc/init/
 
 
-sudo service mos_nodowallet stop
-mv $FILEDIR/mos_nodowallet.conf $FILEDIR/mos_nodowallet.previous
+export running=$(service mos_nodowallet status)
+export mos_service="mos_nodowallet"
 
-echo -e  "start on bitmonero_sync \n\
-stop on stopping mos_bitmonero \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-post-start exec sh -c 'tail -n +0 --pid=$$ -f /var/log/upstart/mos_nodowallet.log | { sed "/Run net_service/ q" && kill $$ ;}' \n\
-exec simplewallet --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$nodowallet --password $nodopass \n\
-" > $FILEDIR/mos_nodowallet.conf
-# sudo cp $FILEDIR/mos_nodowallet.conf /etc/init/
+./service_off.sh
+
+
+mv $FILEDIR/mos_nodowallet.conf $FILEDIR/mos_nodowallet.previous
+cp /home/bob/monerodo/conf_files/mos_nodowallet.base $FILEDIR/mos_nodowallet.conf
+echo "exec simplewallet --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$nodowallet --password $nodopass " >> $FILEDIR/mos_nodowallet.conf
+
 
 ./important.sh
 echo "We will now configure the actual wallet server page. When you access the web GUI wallet, you need to enter a password."
@@ -85,20 +95,17 @@ done
 echo "We are stopping any existing instances of the MiniNodo Webserver. Please be patient"
 
 
-sudo service mos_mininodo stop
-mv $FILEDIR/mos_mininodo.conf $FILEDIR/mos_mininodo.previous
+export running=$(service mos_mininodo status)
+export mos_service="mos_mininodo"
 
-echo -e  "start on started mos_nodowallet \n\
-stop on stopping mos_nodowallet \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-post-start exec sleep 5 \n\
-chdir /monerodo/MiniNodo/ \n\
-exec nodejs MiniNodo.js -p $nodoservpass \n\
-" > $FILEDIR/mos_mininodo.conf
+./service_off.sh
+
+mv $FILEDIR/mos_mininodo.conf $FILEDIR/mos_mininodo.previous
+cp /home/bob/monerodo/conf_files/mos_mininodo.base $FILEDIR/mos_mininodo.conf
+echo "exec nodejs MiniNodo.js -p $nodoservpass" >> $FILEDIR/mos_mininodo.conf
 
 sudo cp $FILEDIR/mos_mininodo.conf /etc/init/
+sudo cp $FILEDIR/mos_nodowallet.conf /etc/init/
 
 echo "Okay, everything should be done!!"
 echo "You will now need to return to the previous menu and turn on the MiniNodo Web Wallet."

@@ -37,6 +37,11 @@ if [ "$(grep $new_line $FILEDIR/bitmonero.conf)" ]; then
 sed -i "s/.*$new_line.*/$new_line$checkp/" $FILEDIR/bitmonero.conf
 else
 echo $new_line$checkp>>$FILEDIR/bitmonero.conf
+fi
+
+export running=$(service mos_bitmonero status)
+export mos_service="mos_bitmonero"
+
 ./service_on.sh
 
 

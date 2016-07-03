@@ -14,7 +14,7 @@ if [ "$first_time" = 'yes' ]; then
         redis-cli FLUSHALL
 
         clear
-        echo "Please goto device management to activate the pool and miner."
+        echo "In the main menu, please checkout item 0, suggested things for first time use!"
         echo "Press enter to continue"
         read input
 fi

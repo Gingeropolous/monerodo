@@ -49,6 +49,16 @@ respawn limit 10 10 \n\
 exec ccminer -l 8x60 -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
 " > $FILEDIR/mos_ext_miner.conf
 
+mv $FILEDIR/mos_nvidia_solo.conf $FILEDIR/mos_nvidia_solo.previous
+
+echo -e  "start on started mos_poolnode \n\
+stop on stopping mos_poolnode \n\
+pre-start exec nvidia-persistenced \n\
+console log \n\
+respawn \n\
+respawn limit 10 10 \n\
+exec ccminer -l 8x60 -o daemon+tcp://$current_ip:18081/json_rpc -u $mine_add -p x \n\
+" > $FILEDIR/mos_nvidia_solo.conf
 
 #write conf files for cpu miner
 
@@ -75,6 +85,7 @@ respawn \n\
 respawn limit 10 10 \n\
 exec sudo minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_cpuminer.conf
+
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
@@ -82,6 +93,15 @@ respawn \n\
 respawn limit 10 10 \n\
 exec minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_ext_cpuminer.conf
+
+echo -e  "start on bitmonero_sync \n\
+stop on stopping mos_bitmonero \n\
+console log \n\
+respawn \n\
+respawn limit 10 10 \n\
+exec minerd -a cryptonight -o daemon+tcp://$current_ip:18081:/json_rpc -u $mine_add -p x -t $n \n\
+" > $FILEDIR/mos_daemonminer.conf
+
 else
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
@@ -89,7 +109,7 @@ console log \n\
 respawn \n\
 respawn limit 10 10 \n\
 chdir /monerodo/yam/ \n\
-exec ./yamgeneric -c x -t $n -M stratum+tcp://$mine_add:x@$current_ip:3333/xmr \n\
+exec ./yamgeneric -c x -t $n -M stratum+tcp://$current_ip:x@$mine_add:3333/xmr \n\
 " > $FILEDIR/mos_cpuminer.conf
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
@@ -97,7 +117,7 @@ console log \n\
 respawn \n\
 respawn limit 10 10 \n\
 chdir /monerodo/yam/ \n\
-exec ./yamgeneric -c x -t $n -M stratum+tcp://$ext_mine:x@$current_ip:3333/xmr \n\
+exec ./yamgeneric -c x -t $n -M stratum+tcp://$ext_mine:x@$mine_add:3333/xmr \n\
 " > $FILEDIR/mos_ext_cpuminer.conf
 fi
 clear

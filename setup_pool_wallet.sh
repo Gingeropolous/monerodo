@@ -10,14 +10,27 @@ echo "It is HIGHLY recommended that your pool wallet is different than your prim
 echo "Your pool wallet is where pool fees are deposited and from where pool payouts are made"
 echo "You will now create a new pool wallet. Please remember the name and password for your wallet."
 echo ""
-echo "When you are done creating the wallet, type exit and hit enter"
+
+echo "For your reference, these are the available wallets in your wallet directory."
+echo "------------------------------------------------"
+cd /monerodo/wallets/
+dir *.bin
+cd /home/bob/monerodo/
+echo "Do you want to use one of these wallets? yes / no"
+read usewallet
+case $usewallet in
+no)
+./important.sh
+echo "When you are done, type exit into simplewallet to resume this setup script"
 echo ""
 echo "Press enter to continue"
 read input
 ./monero_simplewallet.sh
 clear
+;;
+yes)echo "Ok then! We'll just use one of these!" ;;
+esac
 
-echo "You have now created a new pool wallet."
 test_add=0
 while ((test_add == 0))
 do
@@ -63,20 +76,14 @@ read input2
 echo "We are stopping running services. Please be patient"
 # WRITE CONF FILE AND MOVE TO /etc/init/
 
+export running=$(service mos_monerowallet status)
+export mos_service="mos_monerowallet"
 
-sudo service mos_monerowallet stop
+./service_off.sh
+
 mv $FILEDIR/mos_monerowallet.conf $FILEDIR/mos_monerowallet.previous
-
-echo -e  "start on bitmonero_sync \n\
-stop on stopping mos_bitmonero \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-pre-start exec logrotate -f /etc/logrotate.d/upstart \n\
-post-start exec sh -c 'tail -n +0 --pid=$$ -f /var/log/upstart/mos_monerowallet.log | { sed "/Run net_service/ q" && kill $$ ;}' \n\
-exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass \n\
-" > $FILEDIR/mos_monerowallet.conf
-#sudo cp $FILEDIR/mos_monerowallet.conf /etc/init/
+cp /home/bob/monerodo/conf_files/mos_monerowallet.base $FILEDIR/mos_monerowallet.conf
+echo "exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " >> $FILEDIR/mos_monerowallet.conf
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
 
@@ -98,6 +105,7 @@ sudo cp $FILEDIR/config.json /monerodo/sam_pool/
 grep "poolAddress" $FILEDIR/config.json
 
 sudo cp $FILEDIR/mos_poolnode.conf /etc/init/
+sudo cp $FILEDIR/mos_monerowallet.conf /etc/init/
 
 echo "======================="
 echo "You'll need to manually turn on the pool in the settings menu"

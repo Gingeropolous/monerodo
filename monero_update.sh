@@ -1,9 +1,9 @@
 #!/bin/bash
 # Monero Update script
 
-cd /home/bob/monerodo/
-git pull
-chmod +x *.sh
+#cd /home/bob/monerodo/
+#git pull
+#chmod +x *.sh
 ./dep_list.sh
 
 #All the below commented code will eventually be used to adjust for different hardware settings. For now, 1 thread is most stable.

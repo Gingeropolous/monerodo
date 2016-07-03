@@ -8,6 +8,8 @@ do
 	echo "================="
 	echo "Manage Pool server settings"
 	echo "================="
+	cat /home/bob/.monerodo/status_poolwallet.txt
+	echo "================="
 	echo "[0] Modify pool server conf file (setup the pool wallet)"
 	echo "[1] Turn pool on now and on boot"
 	echo "[2] Turn pool off"

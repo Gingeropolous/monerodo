@@ -1,0 +1,8 @@
+start on nodowallet_sync and started mos_bitmonero
+stop on stopping mos_nodowallet 
+console log 
+respawn 
+respawn limit 10 10 
+post-start exec sleep 3 
+chdir /monerodo/MiniNodo/ 
+

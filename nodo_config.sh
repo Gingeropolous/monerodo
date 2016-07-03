@@ -8,10 +8,8 @@ do
 	echo "================="
 	echo "Manage MiniNodo Settings"
 	echo "================="
-	echo ""
-	echo "Status of the MiniNodo server"
-	service mos_mininodo status
-	echo ""
+	cat /home/bob/.monerodo/status_nodowallet.txt
+	echo "================="
 	echo "[1] Setup the mininodo wallet server (must be done first)"
 	echo "[2] Turn on wallet server now and on boot"
 	echo "[3] Turn off wallet server"
