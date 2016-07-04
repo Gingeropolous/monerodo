@@ -24,18 +24,26 @@ do
 	read answer
 	case "$answer" in
 		1) ./xmr_bitmonerod_log.sh;;
-		2) export service=poolwallet;;
-		3) export service=miner;;
-		4) export service=nvidia_solo;;
-		5) export service=ext_miner;;
-		6) export service=cpuminer;;
-		7) export service=ext_cpuminer;;
-		8) export service=daemonminer;;
-		9) export service=mininodo;;
-		10) export service=nodowallet;;
+		2) export service=poolwallet
+		./view_log.sh;;
+		3) export service=miner
+		./view_log.sh;;
+		4) export service=nvidia_solo
+		./view_log.sh;;
+		5) export service=ext_miner
+		./view_log.sh;;
+		6) export service=cpuminer
+		./view_log.sh;;
+		7) export service=ext_cpuminer
+		./view_log.sh;;
+		8) export service=daemonminer
+		./view_log.sh;;
+		9) export service=mininodo
+		./view_log.sh;;
+		10) export service=nodowallet
+		./view_log.sh;;
 		r) exit ;;
 	esac
-	./view_log.sh
 	echo "Press return to continue"
 	read goback
 	clear

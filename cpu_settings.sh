@@ -14,6 +14,7 @@ do
 	echo "[1] cpu local pool mining"
 	echo "[2] cpu external pool mining"
 	echo "[3] cpu solo daemon mining"
+	echo "[4] cpu monero core mining (the built-in miner)"
 	echo "[r] Return to device management menu"
 	echo -e "\n"
 	echo -e "Enter your selection \c"
@@ -22,6 +23,7 @@ do
 		1) ./cpu_local_pool.sh;;
 		2) ./cpu_external_pool.sh;;
 		3) ./cpu_solo_daemon.sh;;
+		4) ./cpu_core_mine.sh;;
 		r) exit ;;
 	esac
 	clear

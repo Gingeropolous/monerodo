@@ -64,12 +64,17 @@ exec ccminer -l 8x60 -o daemon+tcp://$current_ip:18081/json_rpc -u $mine_add -p 
 
 mv $FILEDIR/mos_cpuminer.conf $FILEDIR/mos_cpuminer.previous
 
-#Use half of available cores for CPU mining
-n=$(nproc)
-if [ $n != 1 ];
+cache_size=$(less /proc/cpuinfo | grep -m 1 "cache size" | cut -f 2 | cut -f 2 -d " ")
+n=$((cache_size / 2024))
+
+if [ $n == 0 ];
 then
-   n=$((n/2))
+   n=1
+   echo "You really shouldn't mine with the CPU on this device. It will really slow down everything"
 fi
+echo "Press enter to continue"
+read whynot
+
 
 # Write upstart file depending on whether AES is available or not
 # Writes external and internal pool miner
@@ -119,6 +124,15 @@ respawn limit 10 10 \n\
 chdir /monerodo/yam/ \n\
 exec ./yamgeneric -c x -t $n -M stratum+tcp://$ext_mine:x@$mine_add:3333/xmr \n\
 " > $FILEDIR/mos_ext_cpuminer.conf
+
+echo -e  "start on bitmonero_sync \n\
+stop on stopping mos_bitmonero \n\
+console log \n\
+respawn \n\
+respawn limit 10 10 \n\
+exec minerd -a cryptonight -o daemon+tcp://$current_ip:18081:/json_rpc -u $mine_add -p x -t $n \n\
+" > $FILEDIR/mos_daemonminer.conf
+
 fi
 clear
 ;;

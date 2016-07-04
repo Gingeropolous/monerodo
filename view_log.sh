@@ -1,5 +1,5 @@
 #!/bin/bash
-#This accesses the log file for the monero nvidia miner
+#This accesses the log file for various services
 
 echo "Access logs for $service"
 echo "Read old logs, new logs, or live feed (old / new/ live)"
@@ -26,6 +26,5 @@ echo  -e "\033[33;5;7mREMEMBER TO EXIT USING CTRL-C\033[0m"
 echo "#############################"
 sudo tail -f /var/log/upstart/mos_$service.log
 ;;
-
 esac
 

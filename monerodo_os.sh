@@ -40,17 +40,15 @@ cd /home/bob/monerodo/
 while true
 do
 	echo "================="
-	echo "Monerodo Menu. Version 1r4"
+	echo "Monerodo Menu. Version 2r1"
 	echo "================="
 	cat /home/bob/.monerodo/status.txt
 	echo "================="
 	echo "[0] Recommended things to set up first!"
 	echo "[1] Monerodo device management"
 	echo "[2] Manage or create your account with Monero Core"
-	echo "[3] Manage or create your account with Monerodo Guided Wallet"
-	echo "[4] Make QR codes"
-	echo "[5] Restore your account from mnemonic seed"
-	echo "[6] Generate view only wallet from viewkey"
+	echo "[3] Restore your account from mnemonic seed"
+	echo "[4] Generate view only wallet from viewkey"
 	echo "[q] Quit to the terminal"
 	echo -e "\n"
 	echo "You can type 'back' in some text entry to return to the previous menu"
@@ -60,10 +58,8 @@ do
 		0) ./hello.sh;;
 		1) ./device_management.sh;;
 		2) ./monero_simplewallet.sh;;
-		3) ./monerodo_wallet.sh;;
-		4) ./qr_codes.sh;;
-		5) ./restore.sh;;
-		6) ./viewkey.sh;;
+		3) ./restore.sh;;
+		4) ./viewkey.sh;;
 		q) exit ;;
 	esac
 	clear
