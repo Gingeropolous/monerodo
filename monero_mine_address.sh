@@ -7,7 +7,7 @@ current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut 
 clear
 #receive new mining address, export to global MOS variable, and store in MOS system folder
 rm $FILEDIR/mine_add.txt 
-echo "Please enter your monero mining address"
+echo "Please enter your monero mining address. To skip this type back"
 echo "(Reminder: shift+insert is paste)"
 read mine_add
 

@@ -20,6 +20,9 @@ do
         echo "Recommended First Run Stuff"
 	echo "monerodo_os.hello"
         echo "================="
+	echo "[0] Activate Monero Core!"
+	echo "This will turn on the Monero daemon and start getting you synchronized with the network"
+	echo "This must be done first and can take a while"
         echo "[1] Setup pool wallet"
 	echo "This is required to run the pool server."
         echo "[2] Enter your mining address"
@@ -32,6 +35,7 @@ do
         echo -e "Enter your selection \c"
         read answer
         case "$answer" in
+		0) ./xmr_settings.sh;;
                 1) ./setup_pool_wallet.sh;;
                 2) ./monero_mine_address.sh;;
                 3) ./setup_mininodo_wallet.sh;;

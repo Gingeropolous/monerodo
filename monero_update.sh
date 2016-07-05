@@ -22,9 +22,18 @@
 #echo $GBMEM
 #Pull repository for updates and compile
 
-cd /home/bob/bitmonero
-git pull
-make
+DIRECTORY="/home/bob/bitmonero"
+if [ -d "$DIRECTORY" ]; then
+  cd /home/bob/bitmonero
+  git pull
+  make
+else
+  cd /home/bob/
+  git clone https://github.com/monero-project/bitmonero.git
+  cd /home/bob/bitmonero
+  git pull
+  make
+fi
 
 # Copy binaries to /bin
 #Restart service to use new binaries

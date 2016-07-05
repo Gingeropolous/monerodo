@@ -24,7 +24,7 @@ do
 	read answer
 	case "$answer" in
 		1) ./xmr_bitmonerod_log.sh;;
-		2) export service=poolwallet
+		2) export service=monerowallet
 		./view_log.sh;;
 		3) export service=miner
 		./view_log.sh;;
