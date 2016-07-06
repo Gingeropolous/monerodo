@@ -15,6 +15,7 @@ do
 	echo "[4] Change CPU mining settings"
 	echo "[5] Change pool settings"
 	echo "[6] Change Monero core settings"
+	echo "[7] Manage MiniNodo Wallet Server"
 	echo "[fix] Restart wallet server, pool, and miner." 
 	echo "[r] Return to device management menu"
 	echo -e "\n"
@@ -25,9 +26,10 @@ do
 		1) ./nvidia_settings.sh;;
 		2) ./AMD_settings.sh;;
 		3) ./onboard_gpu.sh;;
-		4) ./xmrcpu_settings.sh;;
+		4) ./cpu_settings.sh;;
 		5) ./xmr_pool_settings.sh;;
 		6) ./xmr_settings.sh;;
+		7) ./nodo_config.sh;;
 		fix) sudo service mos_monerowallet restart;;
 		r) exit ;;
 	esac

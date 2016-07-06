@@ -7,7 +7,7 @@ do
 	echo "================="
 	echo "Get info on the Monero daemon"
 	echo "================="
-	echo "!!!!!!!! Status of deamon !!!!!!!!!!"
+	echo "!!!!!!!! Status of daemon !!!!!!!!!!"
 	bitmonerod --rpc-bind-ip $current_ip status
 	#bitmonerod --rpc-bind-ip $current_ip print_status
 	#echo ">>>>>>>> BLOCK HEIGHT <<<<<<<<<"
@@ -15,6 +15,7 @@ do
 	echo "other options coming soon"
 	echo "[1] Print connections"
 	echo "[2] Print peer list"
+	echo "[3] Status of all the other things"
 	echo "[r] Return to monero settings menu"
 	echo -e "\n"
 	echo -e "Enter your selection"
@@ -23,6 +24,22 @@ do
 	case "$answer" in
 		1) bitmonerod --rpc-bind-ip $current_ip print_cn;;
 		2) bitmonerod --rpc-bind-ip $current_ip print_pl;;
+		3)  echo "!!!!!!! Status of all the other important things!!!!!"
+	            echo "Note, just because they are running doesn't mean they are working. Check the logs."
+	echo "Status of the pool wallet stuff: " && service mos_monerowallet status
+	service mos_poolnode status
+	echo "Status of the nvidia miner on the monerodo pool: " && service mos_miner status
+	echo "Status of the nvidia miner on the external pool: " && service mos_ext_miner status
+	echo "Status of the nvidia miner on the local daemon: " && service mos_nvidia_solo status
+	echo "Status of the CPU miner on this monerodo's pool: "&& service mos_cpuminer status
+	echo "Status of the CPU miner on an external pool: " && service mos_ext_cpuminer.conf status
+	echo "Status of the CPU miner on the local daemon, AES only: " && service mos_mos_daemonminer status
+	echo "Status of the MiniNodo wallet: " && service mos_mininodo status
+	service mos_nodowallet status
+	echo "Press return to continue"
+	read wuppita
+	clear
+	;;
 		r) exit ;;
 	esac
 done

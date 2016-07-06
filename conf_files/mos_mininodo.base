@@ -1,0 +1,8 @@
+start on started mos_nodowallet
+stop on stopping mos_nodowallet 
+console log 
+respawn 
+respawn limit 10 10 
+post-start exec sleep 3 
+chdir /monerodo/MiniNodo/ 
+

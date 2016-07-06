@@ -1,0 +1,9 @@
+start on bitmonero_sync and started mos_bitmonero
+stop on stopping mos_bitmonero
+console log
+respawn
+respawn limit 10 10
+post-stop exec echo "Your pool wallet is not running" > /home/bob/.monerodo/status_poolwallet.txt
+
+
+

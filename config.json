@@ -1,0 +1,17 @@
+{
+  "simplewallet": {
+    "port": 18082
+  },
+  "mininodo": {
+    "port": 3000
+  },
+  "salt1": {
+    "key": "bbbc6a1335e3ab33187a45c617859c2b2e613ab9ae40a5ba23b551aa2a99700f"
+  },
+  "ss": {
+    "key": "50e6d883d5ac90df06090720f86d825068aaa699b6a5171f5f685a5b4346777b"
+  },
+  "MiniNeroPk": {
+    "key": "73244984a50ec1d643cb69bd26d346f8cc22a2a3627b3d2acac9b811d32d9762"
+  }
+}

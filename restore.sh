@@ -10,6 +10,6 @@ echo "You will need to specificy a new file name and a new password for"
 echo "the restored wallet. example - mywallet.bin"
 echo "========================="
 echo ""
-sudo simplewallet --daemon-host $monerodo_ip --restore-deterministic-wallet
+sudo simplewallet --daemon-host $current_ip --restore-deterministic-wallet
 
 

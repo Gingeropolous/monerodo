@@ -1,9 +1,9 @@
 #!/bin/bash
 # Monero Update script
 
-cd /home/bob/monerodo/
-git pull
-chmod +x *.sh
+#cd /home/bob/monerodo/
+#git pull
+#chmod +x *.sh
 ./dep_list.sh
 
 #All the below commented code will eventually be used to adjust for different hardware settings. For now, 1 thread is most stable.
@@ -22,9 +22,18 @@ chmod +x *.sh
 #echo $GBMEM
 #Pull repository for updates and compile
 
-cd /home/bob/bitmonero
-git pull
-make
+DIRECTORY="/home/bob/bitmonero"
+if [ -d "$DIRECTORY" ]; then
+  cd /home/bob/bitmonero
+  git pull
+  make
+else
+  cd /home/bob/
+  git clone https://github.com/monero-project/bitmonero.git
+  cd /home/bob/bitmonero
+  git pull
+  make
+fi
 
 # Copy binaries to /bin
 #Restart service to use new binaries
