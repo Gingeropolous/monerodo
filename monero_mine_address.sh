@@ -8,7 +8,8 @@ clear
 #receive new mining address, export to global MOS variable, and store in MOS system folder
 rm $FILEDIR/mine_add.txt 
 echo "Please enter your monero mining address. To skip this type back"
-echo "(Reminder: shift+insert is paste)"
+echo "(Reminder: shift+insert is paste if you are using a normal terminal)"
+echo "(If you are using the web terminal, right click and hit Paste from Browser"
 read mine_add
 
 case "$mine_add" in

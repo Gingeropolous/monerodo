@@ -1,4 +1,4 @@
-start on nodowallet_sync and started mos_bitmonero
+start on started mos_nodowallet
 stop on stopping mos_nodowallet 
 console log 
 respawn 

@@ -18,7 +18,6 @@ while true
 do
         echo "================="
         echo "Recommended First Run Stuff"
-	echo "monerodo_os.hello"
         echo "================="
 	echo "[0] Activate Monero Core!"
 	echo "This will turn on the Monero daemon and start getting you synchronized with the network"
@@ -27,6 +26,8 @@ do
 	echo "This is required to run the pool server."
         echo "[2] Enter your mining address"
 	echo "Any mining that your monerodo will do will use this address"
+	echo "  [w] Setup a new wallet"
+	echo "  Do you need to setup a new wallet for mining rewards? If you need it, create a new wallet first before #2"
         echo "[3] Configure the MiniNodo Wallet Web Server"
         echo "This creates a web and smartphone-app accessible wallet instance "
         echo "[r] Return to Main Menu"
@@ -39,6 +40,7 @@ do
                 1) ./setup_pool_wallet.sh;;
                 2) ./monero_mine_address.sh;;
                 3) ./setup_mininodo_wallet.sh;;
+		w) ./monero_simplewallet.sh;;
                 r) exit ;;
         esac
         clear
