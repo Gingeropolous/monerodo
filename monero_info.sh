@@ -26,31 +26,19 @@ do
 		2) bitmonerod --rpc-bind-ip $current_ip print_pl;;
 		3)  echo "!!!!!!! Status of all the other important things!!!!!"
 	            echo "Note, just because they are running doesn't mean they are working. Check the logs."
-	echo "Status of the pool wallet stuff"
-	service mos_monerowallet status
+	echo "Status of the pool wallet stuff: " && service mos_monerowallet status
 	service mos_poolnode status
-	echo ""
-	echo "Status of the nvidia miner on the monerodo pool"
-	service mos_miner status
-	echo ""
-	echo "Status of the nvidia miner on the external pool"
-	service mos_ext_miner status
-	echo ""
-	echo "Status of the nvidia miner on the local daemon"
-	service mos_nvidia_solo status
-	echo ""
-	echo "Status of the CPU miner on this monerodo's pool"
-	service mos_cpuminer status
-	 echo ""
-	echo "Status of the CPU miner on an external pool"
-	service mos_ext_cpuminer.conf status
-	 echo ""
-	echo "Status of the CPU miner on the local daemon, AES only"
-	service mos_mos_daemonminer status
-	echo ""
-	echo "Status of the MiniNodo wallet"
-	service mos_mininodo status
+	echo "Status of the nvidia miner on the monerodo pool: " && service mos_miner status
+	echo "Status of the nvidia miner on the external pool: " && service mos_ext_miner status
+	echo "Status of the nvidia miner on the local daemon: " && service mos_nvidia_solo status
+	echo "Status of the CPU miner on this monerodo's pool: "&& service mos_cpuminer status
+	echo "Status of the CPU miner on an external pool: " && service mos_ext_cpuminer.conf status
+	echo "Status of the CPU miner on the local daemon, AES only: " && service mos_mos_daemonminer status
+	echo "Status of the MiniNodo wallet: " && service mos_mininodo status
 	service mos_nodowallet status
+	echo "Press return to continue"
+	read wuppita
+	clear
 	;;
 		r) exit ;;
 	esac
