@@ -6,6 +6,7 @@ export u="$USER" #should be deprecated by now, all instances replaced with bob
 export current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 export help="Type 'back' to return to previous menu"
 export FILEDIR=$(grep -n 'filedir' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+export VERSION=$(grep -n 'version' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
 #### Duh
 
@@ -40,7 +41,7 @@ cd /home/bob/monerodo/
 while true
 do
 	echo "================="
-	echo "Monerodo Menu. Version 2r1"
+	echo "Monerodo Menu. Version $VERSION"
 	echo "================="
 	cat /home/bob/.monerodo/status.txt
 	echo "================="
