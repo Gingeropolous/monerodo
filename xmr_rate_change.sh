@@ -1,10 +1,10 @@
 #!/bin/bash
 #MONERODO script to change rates on 
 
-echo "Please enter new upload rate in kb/s. Standard is 2 kb/s"
-echo "Example: 2"
+echo "Please enter new upload rate in kb/s. Standard is 2000 kb/s"
+echo "Example: 2000"
 read upload
-echo "Please enter new download rate in kb/s. Standard is 8 kb/s"
+echo "Please enter new download rate in kb/s. Standard is 8000 kb/s"
 read download 
 
 # WRITE CONF FILE AND MOVE TO /etc/init/
