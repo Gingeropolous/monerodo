@@ -41,8 +41,8 @@ exec ccminer -l 8x60 -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
 
 mv $FILEDIR/mos_ext_miner.conf $FILEDIR/mos_ext_miner.previous
 
-echo -e  "start on started mos_poolnode \n\
-stop on stopping mos_poolnode \n\
+echo -e  "start on (net-device-up IFACE!=lo) and runlevel [2345] \n\
+stop on shutdown \n\
 pre-start exec nvidia-persistenced \n\
 console log \n\
 respawn \n\
@@ -52,8 +52,8 @@ exec ccminer -l 8x60 -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
 
 mv $FILEDIR/mos_nvidia_solo.conf $FILEDIR/mos_nvidia_solo.previous
 
-echo -e  "start on started mos_poolnode \n\
-stop on stopping mos_poolnode \n\
+echo -e  "start on started mos_bitmonero \n\
+stop on stopping mos_bitmonero \n\
 pre-start exec nvidia-persistenced \n\
 console log \n\
 respawn \n\
@@ -61,9 +61,10 @@ respawn limit 10 10 \n\
 exec ccminer -l 8x60 -o daemon+tcp://$current_ip:18081/json_rpc -u $mine_add -p x \n\
 " > $FILEDIR/mos_nvidia_solo.conf
 
+###############################
 #write conf files for cpu miner
+###############################
 
-mv $FILEDIR/mos_cpuminer.conf $FILEDIR/mos_cpuminer.previous
 
 cache_size=$(less /proc/cpuinfo | grep -m 1 "cache size" | cut -f 2 | cut -f 2 -d " ")
 n=$((cache_size / 2024))
@@ -77,13 +78,14 @@ echo "Press enter to continue"
 read whynot
 
 
-# Write upstart file depending on whether AES is available or not
+# Write upstart file depending on whether AES is available or not. Uses Wolf's for AES, uses YAM generic for non AES. 
 # Writes external and internal pool miner
 
 less /proc/cpuinfo > $FILEDIR/cpuinfo.txt
 
 if [ "$(grep aes $FILEDIR/cpuinfo.txt)" ] ;
 then
+mv $FILEDIR/mos_cpuminer.conf $FILEDIR/mos_cpuminer.previous
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
@@ -92,14 +94,16 @@ respawn limit 10 10 \n\
 exec sudo minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_cpuminer.conf
 
-echo -e  "start on started mos_poolnode \n\
-stop on stopping mos_poolnode \n\
+mv $FILEDIR/mos_ext_cpuminer.conf $FILEDIR/mos_ext_cpuminer.previous
+echo -e  "start on (net-device-up IFACE!=lo) and runlevel [2345] \n\
+stop on shutdown \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
 exec minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
 " > $FILEDIR/mos_ext_cpuminer.conf
 
+mv $FILEDIR/mos_daemonminer.conf $FILEDIR/mos_daemonminer.previous
 echo -e  "start on bitmonero_sync \n\
 stop on stopping mos_bitmonero \n\
 console log \n\
@@ -109,6 +113,7 @@ exec minerd -a cryptonight -o daemon+tcp://$current_ip:18081:/json_rpc -u $mine_
 " > $FILEDIR/mos_daemonminer.conf
 
 else
+mv $FILEDIR/mos_cpuminer.conf $FILEDIR/mos_cpuminer.previous
 echo -e  "start on started mos_poolnode \n\
 stop on stopping mos_poolnode \n\
 console log \n\
@@ -117,8 +122,10 @@ respawn limit 10 10 \n\
 chdir /monerodo/yam/ \n\
 exec ./yamgeneric -c x -t $n -M stratum+tcp://$current_ip:x@$mine_add:3333/xmr \n\
 " > $FILEDIR/mos_cpuminer.conf
-echo -e  "start on started mos_poolnode \n\
-stop on stopping mos_poolnode \n\
+
+mv $FILEDIR/mos_ext_cpuminer.conf $FILEDIR/mos_ext_cpuminer.previous
+echo -e  "start on (net-device-up IFACE!=lo) and runlevel [2345] \n\
+stop on shutdown \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
@@ -126,6 +133,7 @@ chdir /monerodo/yam/ \n\
 exec ./yamgeneric -c x -t $n -M stratum+tcp://$ext_mine:x@$mine_add:3333/xmr \n\
 " > $FILEDIR/mos_ext_cpuminer.conf
 
+mv $FILEDIR/mos_daemonminer.conf $FILEDIR/mos_daemonminer.previous
 echo -e  "start on bitmonero_sync \n\
 stop on stopping mos_bitmonero \n\
 console log \n\
