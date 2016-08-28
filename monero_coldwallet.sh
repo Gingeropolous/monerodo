@@ -21,7 +21,7 @@ echo "In simplewallet, you will be able to highlight, select, and copy"
 echo "your address. You should then paste it to another file on your computer."  
 echo "========================="
 echo ""
-./simplewallet
+./simplewallet --daemon-host $current_ip
 
 echo "Please press enter to continue. The screen will clear. I hope you have"
 echo "written down you seed and copied your address!"
@@ -40,5 +40,14 @@ sudo cp *.address.txt /monerodo/wallets/cold/
 *) echo "Okay then! I hope you wrote down your seed and copied your address!" ;;
 
 esac
+
+echo "Do you want to reboot now? (reboot / no)"
+read reboot
+case "$reboot" in
+reboot)
+sudo reboot ;;
+*) 
+echo "OK! We're going back to the main menu. Press return to continue!"
+read goback ;;
 
 cd /home/bob/monerodo

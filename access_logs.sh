@@ -10,6 +10,7 @@ do
 	echo "================="
 	echo "[1] Core  daemon log"
 	echo "[2] Pool wallet server log"
+	echo "[pool] Pool server log"
 	echo "[3] Nvidia solo pool miner log"
         echo "[4] Nvidia solo daemon miner log"
         echo "[5] Nvidia external pool miner log"
@@ -23,6 +24,8 @@ do
 	echo -e "Enter your selection \c"
 	read answer
 	case "$answer" in
+		pool) export service=poolnode
+		./view_log.sh;;
 		1) ./xmr_bitmonerod_log.sh;;
 		2) export service=monerowallet
 		./view_log.sh;;
