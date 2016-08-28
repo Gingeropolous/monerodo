@@ -101,7 +101,7 @@ sed -i "s/.*poolAddress.*/$new_line/" $FILEDIR/config.json
 echo "This was the line entered into your config.json for your pool server"
 echo $new_line
 echo "This is the line in your config.json"
-sudo cp $FILEDIR/config.json /monerodo/sam_pool/
+sudo cp $FILEDIR/config.json /monerodo/zone_pool/
 grep "poolAddress" $FILEDIR/config.json
 
 sudo cp $FILEDIR/mos_poolnode.conf /etc/init/
