@@ -35,10 +35,10 @@ do
 	echo "Status can be observed in the monero daemon logs"
 	read answer
 	case "$answer" in
-		1)bitmonerod --rpc-bind-ip $current_ip start_mining $mine_add $n 
-		bitmonerod --rpc-bind-ip $current_ip show_hr;;
-		2)bitmonerod --rpc-bind-ip $current_ip start_mining $mine_add $n
-		bitmonerod --rpc-bind-ip $current_ip show_hr
+		1)monerod --rpc-bind-ip $current_ip start_mining $mine_add $n 
+		monerod --rpc-bind-ip $current_ip show_hr;;
+		2)monerod --rpc-bind-ip $current_ip start_mining $mine_add $n
+		monerod --rpc-bind-ip $current_ip show_hr
 		new_line="start-mining=$mine_add"
 		new_line2="mining-threads=$n"
 		if [ "$(grep mining $FILEDIR/bitmonero.conf)" ]; then
@@ -49,8 +49,8 @@ do
 		echo $new_line2>>$FILEDIR/bitmonero.conf
 		fi
 		;;
-		3)bitmonerod --rpc-bind-ip $current_ip stop_mining;;
-		4)bitmonerod --rpc-bind-ip $current_ip stop_mining
+		3)monerod --rpc-bind-ip $current_ip stop_mining;;
+		4)monerod --rpc-bind-ip $current_ip stop_mining
 		new_line=""
                 if [ "$(grep mining $FILEDIR/bitmonero.conf)" ]; then
                 sed -i "s/.*start-mining.*/$new_line/" $FILEDIR/bitmonero.conf
