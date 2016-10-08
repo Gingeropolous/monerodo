@@ -2,7 +2,7 @@
 #MONERODO cold wallet creation
 clear
 
-sudo cp /bin/simplewallet /dev/shm/
+sudo cp /bin/monero-wallet-cli /dev/shm/
 
 cd /dev/shm/
 rm *.*
@@ -21,7 +21,7 @@ echo "In simplewallet, you will be able to highlight, select, and copy"
 echo "your address. You should then paste it to another file on your computer."  
 echo "========================="
 echo ""
-./simplewallet --daemon-host $current_ip
+./monero-wallet-cli --daemon-host $current_ip
 
 echo "Please press enter to continue. The screen will clear. I hope you have"
 echo "written down you seed and copied your address!"
