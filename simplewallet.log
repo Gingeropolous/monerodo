@@ -1,6 +1,0 @@
-2016-Jul-04 09:09:06.354168 Monero 'Hydrogen Helix' (v0.9.4.0-release)
-2016-Jul-04 09:09:06.354337 Setting log level = 0
-2016-Jul-04 09:09:06.354385 default_log: simplewallet.log
-2016-Jul-04 09:09:06.354452 Logging at log level 0 to /home/bob/monerodo/simplewallet.log
-2016-Jul-04 09:09:16.370605 Error: No data supplied, cancelled
-2016-Jul-04 09:09:16.370718 ERROR /DISTRIBUTION-BUILD/src/simplewallet/simplewallet.cpp:3005 Failed to initialize wallet

@@ -58,7 +58,7 @@ do
 	case "$answer" in
 		0) ./hello.sh;;
 		1) ./device_management.sh;;
-		2) ./monero_simplewallet.sh;;
+		2) ./monero_monero-wallet-cli.sh;;
 		3) ./restore.sh;;
 		4) ./viewkey.sh;;
 		q) exit ;;

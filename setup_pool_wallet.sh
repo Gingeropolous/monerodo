@@ -21,11 +21,11 @@ read usewallet
 case $usewallet in
 no)
 ./important.sh
-echo "When you are done, type exit into simplewallet to resume this setup script"
+echo "When you are done, type exit into monero-wallet-cli to resume this setup script"
 echo ""
 echo "Press enter to continue"
 read input
-./monero_simplewallet.sh
+./monero_monero-wallet-cli.sh
 clear
 ;;
 yes)echo "Ok then! We'll just use one of these!" ;;
@@ -56,10 +56,10 @@ do
 	#The below check was commented out due to the poor performance of the refresh. Could work back in thanks to new optimizations. 
 	#echo "We will now test your information to confirm that your pool wallet works properly"
 	#echo "Simplewallet will load and attempt to open your wallet using the information you provided"
-	#echo "If the wallet loads correctly, please type exit to exit simplewallet and return to setup"
+	#echo "If the wallet loads correctly, please type exit to exit monero-wallet-cli and return to setup"
 	#echo "If the wallet does not load correctly, please press ctrl+c to return to this menu and try again"
 	#echo ""
-	#/home/bob/bitmonero/build/release/bin/simplewallet --wallet-file $poolwallet --password $poolpass --daemon-host $monerodo_ip;;
+	#/home/bob/bitmonero/build/release/bin/monero-wallet-cli --wallet-file $poolwallet --password $poolpass --daemon-host $monerodo_ip;;
 	#echo "-----------------------------------------------"
 	#echo "Did the wallet load properly? please enter (y)es or (n)o"
 	#read poolrun
@@ -70,7 +70,7 @@ do
 	#clear
 done
 clear
-echo "You have succesfully created a pool wallet. We will now create the .conf file that will load simplewallet on boot."
+echo "You have succesfully created a pool wallet. We will now create the .conf file that will load monero-wallet-cli on boot."
 echo "Press enter to continue. At some point during the process, you will be asked to enter your UNIX password."
 read input2
 echo "We are stopping running services. Please be patient"
@@ -83,7 +83,7 @@ export mos_service="mos_monerowallet"
 
 mv $FILEDIR/mos_monerowallet.conf $FILEDIR/mos_monerowallet.previous
 cp /home/bob/monerodo/conf_files/mos_monerowallet.base $FILEDIR/mos_monerowallet.conf
-echo "exec simplewallet --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " >> $FILEDIR/mos_monerowallet.conf
+echo "exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " >> $FILEDIR/mos_monerowallet.conf
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
 

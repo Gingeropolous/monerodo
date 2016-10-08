@@ -7,7 +7,7 @@ sudo cp /bin/monero-wallet-cli /dev/shm/
 cd /dev/shm/
 rm *.*
 
-echo "You are now using the Monero core simplewallet program"
+echo "You are now using the Monero core monero-wallet-cli program"
 echo "TO RETURN TO THE MONERODO OS, TYPE EXIT INTO SIMPLEWALLET"
 echo "========================="
 /home/bob/monerodo/important.sh
@@ -17,7 +17,7 @@ echo "files will be gone, forever. It is VERY IMPORTANT that you write down your
 echo "mnemonic seed. It is also recommended to just mash your keyboard for"
 echo "the password. It doesn't matter, and the longer and more random the"
 echo "better. It is also IMPORTANT to copy your monero address somewhere."
-echo "In simplewallet, you will be able to highlight, select, and copy"
+echo "In monero-wallet-cli, you will be able to highlight, select, and copy"
 echo "your address. You should then paste it to another file on your computer."  
 echo "========================="
 echo ""
