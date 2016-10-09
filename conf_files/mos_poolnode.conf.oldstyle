@@ -4,6 +4,8 @@ author      "bob"
 start on poolwallet_sync and started mos_bitmonero
 stop on stopping mos_monerowallet
 
+expect daemon
+
 console log
 
 respawn
@@ -11,4 +13,4 @@ respawn limit 10 10
 post-start exec sleep 5
 chdir /monerodo/zone_pool
 
-exec node init.js
+exec forever start init.js

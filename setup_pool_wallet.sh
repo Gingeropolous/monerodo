@@ -86,14 +86,19 @@ cp /home/bob/monerodo/conf_files/mos_monerowallet.base $FILEDIR/mos_monerowallet
 echo "exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 8082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " >> $FILEDIR/mos_monerowallet.conf
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
+sudo cp /monerodo/pool_add.txt /home/bob/.monerodo/pool_add.txt
+sudo cp /monerodo/wallets/$poolwallet.address.txt /home/bob/.monerodo/$poolwallet.address.txt
+sudo chmod 777 /home/bob/.monerodo/pool_add.txt
+sudo chmod 777 /home/bob/.monerodo/$poolwallet.address.txt
 
-old_pool="$(awk '{print;}' /monerodo/pool_add.txt)"
+
+old_pool="$(awk '{print;}' /home/bob/.monerodo/pool_add.txt)"
 ext=".address.txt"
-new_pool="$(awk '{print;}' /monerodo/wallets/$poolwallet$ext)"
+new_pool="$(awk '{print;}' /home/bob/.monerodo/$poolwallet$ext)"
 echo "This is your new pool wallet address: "$new_pool
 new_line="\"poolAddress\": \"$new_pool\","
 
-sed -i "s/.*poolAddress.*/$new_line/" $FILEDIR/config.json
+sudo sed -i "s/.*poolAddress.*/$new_line/" $FILEDIR/config.json
 
 #echo $old_pool
 #echo $ext

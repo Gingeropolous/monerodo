@@ -34,7 +34,7 @@ pre-start exec nvidia-persistenced \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
-exec ccminer -l 8x60 -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
+exec ccminer -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
 " > $FILEDIR/mos_miner.conf
 
 # write conf file for nvidia external pool miner
@@ -47,7 +47,7 @@ pre-start exec nvidia-persistenced \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
-exec ccminer -l 8x60 -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
+exec ccminer -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
 " > $FILEDIR/mos_ext_miner.conf
 
 mv $FILEDIR/mos_nvidia_solo.conf $FILEDIR/mos_nvidia_solo.previous
@@ -58,7 +58,7 @@ pre-start exec nvidia-persistenced \n\
 console log \n\
 respawn \n\
 respawn limit 10 10 \n\
-exec ccminer -l 8x60 -o daemon+tcp://$current_ip:18081/json_rpc -u $mine_add -p x \n\
+exec ccminer -o daemon+tcp://$current_ip:18081/json_rpc -u $mine_add -p x \n\
 " > $FILEDIR/mos_nvidia_solo.conf
 
 ###############################

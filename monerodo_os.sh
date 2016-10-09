@@ -53,6 +53,7 @@ do
 	echo "[q] Quit to the terminal"
 	echo -e "\n"
 	echo "You can type 'back' in some text entry to return to the previous menu"
+	echo "Scrolling is kind of tricky - you have to press ctrl+a esc, and then you can use your arrow keys. To exit scroll mode, you press q twice."
 	echo -e "Enter your selection \c"
 	read answer
 	case "$answer" in

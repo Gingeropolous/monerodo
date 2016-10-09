@@ -16,6 +16,10 @@ sudo rm /etc/init/mos_*
 
 sudo rm /monerodo/wallets/*
 
+sudo rm /monerodo/zone_pool/logs/*
+
+sudo rm /monerodo/sam_pool/logs/*
+
 sudo rm /var/log/upstart/mos_*
 
 sudo rm /var/log/upstart/mossys_*
