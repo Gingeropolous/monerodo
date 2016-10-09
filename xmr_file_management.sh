@@ -14,9 +14,9 @@
 	echo -e "Enter your selection \c"
 	read answer
 	case "$answer" in
-		0) ./xmr_import_blockchain.sh;;
-		1) ./xmr_delete_blockchain.sh;;
-		2) ./xmr_delete_p2pstate.sh;;
+		1) ./xmr_import_blockchain.sh;;
+		2) ./xmr_delete_blockchain.sh;;
+		3) ./xmr_delete_p2pstate.sh;;
 		r) exit ;;
 	esac
 	clear

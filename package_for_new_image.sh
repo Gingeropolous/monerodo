@@ -6,6 +6,7 @@ read answer
 case $answer in
 no) exit ;;
 yes)
+sudo service mos_bitmonero stop
 FILEDIR="/home/bob/.monerodo"
 rm $FILEDIR/first_time.txt
 echo "yes" > $FILEDIR/first_time.txt
@@ -15,7 +16,15 @@ sudo rm /etc/init/mos_*
 
 sudo rm /monerodo/wallets/*
 
+sudo rm /monerodo/zone_pool/logs/*
+
+sudo rm /monerodo/sam_pool/logs/*
+
 sudo rm /var/log/upstart/mos_*
+
+sudo rm /var/log/upstart/mossys_*
+
+rm /home/bob/wallets/viewonly/*
 
 ;;
 esac

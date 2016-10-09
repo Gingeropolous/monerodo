@@ -15,8 +15,11 @@ do
 	echo "[3] Turn off wallet server"
 	echo "[4] Turn off wallet server and stop from starting on boot"
 	echo "[r] Return to device management menu"
+	echo ""
+	echo "Please access your MiniNodo wallet at https://$current_ip:3000"
 	echo -e "\n"
-	echo -e "Enter your selection \c"
+	echo -e "Enter your selection or press enter to check status of wallet and server\c"
+	echo ""
 	read answer
 	export running=$(service mos_nodowallet status)
 	export mos_service="mos_nodowallet"

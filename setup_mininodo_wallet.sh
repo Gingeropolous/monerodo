@@ -21,11 +21,11 @@ read usewallet
 case $usewallet in
 no)
 ./important.sh
-echo "When you are done, type exit into simplewallet to resume this setup script"
+echo "When you are done, type exit into monero-wallet-cli to resume this setup script"
 echo ""
 echo "Press enter to continue"
 read input
-./monero_simplewallet.sh
+./monero_monero-wallet-cli.sh
 clear
 ;;
 yes)echo "Ok then! We'll just use one of these!" ;;
@@ -56,7 +56,7 @@ do
 	clear
 done
 clear
-echo "We will now create the .conf file that will load simplewallet on boot."
+echo "We will now create the .conf file that will load monero-wallet-cli on boot."
 echo "Press enter to continue. At some point during the process, you will be asked to enter your UNIX password."
 read input2
 echo "We are stopping running services. Please be patient"
@@ -71,7 +71,7 @@ export mos_service="mos_nodowallet"
 
 mv $FILEDIR/mos_nodowallet.conf $FILEDIR/mos_nodowallet.previous
 cp /home/bob/monerodo/conf_files/mos_nodowallet.base $FILEDIR/mos_nodowallet.conf
-echo "exec simplewallet --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$nodowallet --password $nodopass " >> $FILEDIR/mos_nodowallet.conf
+echo "exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$nodowallet --password $nodopass " >> $FILEDIR/mos_nodowallet.conf
 
 
 ./important.sh

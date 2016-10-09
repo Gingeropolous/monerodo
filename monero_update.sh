@@ -38,6 +38,6 @@ fi
 # Copy binaries to /bin
 #Restart service to use new binaries
 sudo service mos_bitmonero stop
-sudo cp /home/bob/bitmonero/build/release/bin/bitmonerod /bin
-sudo cp /home/bob/bitmonero/build/release/bin/simplewallet /bin
+sudo cp /home/bob/bitmonero/build/release/bin/monerod /bin
+sudo cp /home/bob/bitmonero/build/release/bin/monero-wallet-cli /bin
 sudo service mos_bitmonero start

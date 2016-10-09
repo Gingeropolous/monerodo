@@ -1,24 +1,21 @@
 #!/bin/bash
-#MONERODO open simplewallet
+#MONERODO open monero-wallet-cli
 clear
-cd /home/bob/wallets/viewonly/
+cd /monerodo/wallets/
 
-echo "You are now using the Monero core simplewallet program"
+echo "You are now using the Monero core monero-wallet-cli program"
 echo "========================="
 echo "You are about to create view only wallet files."
 echo "Please enter the required information in the prompts."
-echo "The view only wallet will be stored in /wallet/viewonly"
+echo "The view only wallet will be stored in the same directory as your other wallets"
+echo "So name them differently!"
 echo "========================="
 echo ""
 echo -e "\n"
-echo "Please enter the address"
-read vaddr
-echo "Please enter the viewkey"
-read vkey
 echo "Please enter the name of the file for this view only wallet"
 echo "example: myviewonlywallet.bin"
 read vkeyfile
 
-simplewallet --daemon-host $current_ip --generate-from-view-key $addr:$vkey:$vkeyfile
+sudo monero-wallet-cli --daemon-host $current_ip --generate-from-view-key $vkeyfile
 
 

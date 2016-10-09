@@ -8,10 +8,7 @@ do
 	echo "Get info on the Monero daemon"
 	echo "================="
 	echo "!!!!!!!! Status of daemon !!!!!!!!!!"
-	bitmonerod --rpc-bind-ip $current_ip status
-	#bitmonerod --rpc-bind-ip $current_ip print_status
-	#echo ">>>>>>>> BLOCK HEIGHT <<<<<<<<<"
-	#bitmonerod --rpc-bind-ip $current_ip print_height
+	monerod --rpc-bind-ip $current_ip status
 	echo "other options coming soon"
 	echo "[1] Print connections"
 	echo "[2] Print peer list"
@@ -22,8 +19,8 @@ do
 	echo "Or leave blank and press enter to update info"
 	read answer
 	case "$answer" in
-		1) bitmonerod --rpc-bind-ip $current_ip print_cn;;
-		2) bitmonerod --rpc-bind-ip $current_ip print_pl;;
+		1) monerod --rpc-bind-ip $current_ip print_cn;;
+		2) monerod --rpc-bind-ip $current_ip print_pl;;
 		3)  echo "!!!!!!! Status of all the other important things!!!!!"
 	            echo "Note, just because they are running doesn't mean they are working. Check the logs."
 	echo "Status of the pool wallet stuff: " && service mos_monerowallet status

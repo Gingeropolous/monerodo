@@ -5,35 +5,36 @@
 # CHECK IF IP OF MONERODO HAS CHANGED.
 last_ip="$(awk '{print;}' /monerodo/last.ip)"
 current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
+FILEDIR=$(grep -n 'filedir' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
-# var api = "http://192.168.1.151:8117";
-# The above line is in the var/www/website file and needs to be addressed
-# These all need to be changed to the replace whole line approach to avoid last IP conflicts
-# Could also change it with the if same, do nothing, otherwise execute
 
 if [[ $current_ip != $last_ip ]]; then
-	sudo service mos_bitmonero stop
-	# Changes all the active mos_conf files
-	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_bitmonero.conf
-	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_monerowallet.conf
-	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_miner.conf
-	sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_cpuminer.conf
-	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/zone_pool/config.json
-	
-	# Changes any inactive mos_conf files in the mos directory
+        #sudo service mos_bitmonero stop # Removed 20160827 because if the daemon is supposed to be off this doesn't make sense
+        # Changes all the active mos_conf files
+        sed -i -e "s/$last_ip/$current_ip/g" /etc/init/mos_*.conf
 
-	sed -i -e "s/$last_ip/$current_ip/g" /home/bob/monerodo/conf_files/mos_bitmonero.conf
-        sed -i -e "s/$last_ip/$current_ip/g" /home/bob/monerodo/conf_files/mos_monerowallet.conf
-        sed -i -e "s/$last_ip/$current_ip/g" /home/bob/monerodo/conf_files/mos_miner.conf
-        sed -i -e "s/$last_ip/$current_ip/g" /home/bob/monerodo/conf_files/mos_cpuminer.conf
+        # Changes any inactive mos_conf files in the mos directory, useful for if something hasn't been activated yet or is suspended
 
-	sudo service mos_bitmonero start
+        sed -i -e "s/$last_ip/$current_ip/g" $FILEDIR/mos_*.conf
+
+	#Brute force attempt. Slogged system
+	#find / -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
+
+	# Changes pool configuration and website urls and blanket the home directory.
+	# Might mess with git. 
+	find /var/www/ -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
+	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/zone_pool/*
+	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/sam_pool/*
+	sudo find /home/bob/ -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
+
+        # sudo service mos_bitmonero start  # Removed 20160827 because if the daemon is supposed to be off this doesn't make sense
+
+        #Log change
+        echo "[`date`] The ip was changed from $last_ip to $current_ip" >> /monerodo/ipchange.log
+
+        #WRITE NEW IP INTO LAST IP
+        # rm /monerodo/last.ip
+        echo $current_ip > /monerodo/last.ip
+
 fi
 
-
-#WRITE NEW IP INTO LAST IP
-rm /monerodo/last.ip
-echo $current_ip > /monerodo/last.ip
-
-#Log change
-echo "[`date`] The ip was changed from $last_ip to $current_ip" >> /monerodo/ipchange.log

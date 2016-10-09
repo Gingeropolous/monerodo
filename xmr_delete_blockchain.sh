@@ -11,7 +11,6 @@ echo "[delete_import] Deletes the blockchain and imports monero.blockchain by co
 echo "Type anything else to exit"
 read delete
 case "$delete" in
-*) echo "Blorp";;
 delete)
 sudo service mos_bitmonero stop
 sudo rm /.bitmonero/lmdb/data.mdb 
@@ -29,6 +28,6 @@ sudo rm /.bitmonero/lmdb/data.mdb
 ./xmr_import_blockchain
 sudo service mos_bitmonero start
 ;;
-
+*) echo "Blorp";;
 esac
 

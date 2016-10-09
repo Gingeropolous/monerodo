@@ -40,7 +40,7 @@ do
                 1) ./setup_pool_wallet.sh;;
                 2) ./monero_mine_address.sh;;
                 3) ./setup_mininodo_wallet.sh;;
-		w) ./monero_simplewallet.sh;;
+		w) ./monero_monero-wallet-cli.sh;;
                 r) exit ;;
         esac
         clear

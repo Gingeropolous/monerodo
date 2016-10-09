@@ -24,7 +24,7 @@ do
 	case "$answer" in
 		0) ./monero_mine_address.sh;;
 		1) ./nvidia_settings.sh;;
-		2) ./AMD_settings.sh;;
+		2) echo "Doesn't exist sorry" && sleep 2 ;;
 		3) ./onboard_gpu.sh;;
 		4) ./cpu_settings.sh;;
 		5) ./xmr_pool_settings.sh;;

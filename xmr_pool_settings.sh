@@ -15,8 +15,10 @@ do
 	echo "[2] Turn pool off"
 	echo "[3] Turn pool off now and stop from running on boot"
 	echo "[r] Return to device management menu"
+	echo ""
+	echo "Please visit http://$current_ip/pool to see whether your pool is running"
 	echo -e "\n"
-	echo -e "Enter your selection \c"
+	echo -e "Enter your selection and press enter or just press enter to check status\c"
 	read answer
         export mos_service="mos_monerowallet"
 	export running=$(service $mos_service status)
