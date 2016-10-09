@@ -19,7 +19,14 @@ echo "the password. It doesn't matter, and the longer and more random the"
 echo "better. It is also IMPORTANT to copy your monero address somewhere."
 echo "In monero-wallet-cli, you will be able to highlight, select, and copy"
 echo "your address. You should then paste it to another file on your computer."  
-echo "========================="
+/home/bob/monerodo/important.sh
+echo "NOTE - This is a semi-secure method to create a cold wallet. If the"
+echo "computer you are using to access your Monerodo is compromised, this"
+echo "process may also be compromised. If you can connect a screen to your"
+echo "monerodo, and access the terminal, this is preferrable. The ideal method"
+echo "involves booting into a live USB environment, which you can do with the"
+echo "Monerodo OS. Just use the same USB drive and instead of installing, boot"
+echo "into a live environment (I think its the first option)" 
 echo ""
 ./monero-wallet-cli --daemon-host $current_ip
 

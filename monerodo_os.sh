@@ -50,6 +50,8 @@ do
 	echo "[2] Manage or create your account with Monero Core"
 	echo "[3] Restore your account from mnemonic seed"
 	echo "[4] Generate view only wallet from viewkey"
+	echo "[5] Generate cold wallet"
+	echo "[6] See available addresses and delete wallets"
 	echo "[q] Quit to the terminal"
 	echo -e "\n"
 	echo "You can type 'back' in some text entry to return to the previous menu"
@@ -62,6 +64,8 @@ do
 		2) ./monero_monero-wallet-cli.sh;;
 		3) ./restore.sh;;
 		4) ./viewkey.sh;;
+		5) ./monero_coldwallet.sh;;
+		6) ./monero_wallets.sh;;
 		q) exit ;;
 	esac
 	clear
