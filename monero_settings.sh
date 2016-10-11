@@ -30,7 +30,7 @@ do
 		5) ./xmr_pool_settings.sh;;
 		6) ./xmr_settings.sh;;
 		7) ./nodo_config.sh;;
-		fix) sudo service mos_monerowallet restart;;
+		fix) sudo service mos_monerowallet reload;;
 		r) exit ;;
 	esac
 	clear

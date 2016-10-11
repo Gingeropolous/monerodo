@@ -19,7 +19,7 @@ do
 	echo "[u] Update Monero Core by downloading the latest release binaries"
 	echo "[r] Return to Monero settings menu"
 	echo -e "\n"
-	echo -e "Enter your selection \c"
+	echo -e "Enter your selection or just press return to update status: \c"
 	read answer
 	export running=$(service mos_bitmonero status)
 	export mos_service="mos_bitmonero"
@@ -35,4 +35,5 @@ do
 		u) ./xmr_update_binaries.sh;;
 		r) exit ;;
 	esac
+	sleep 1
 done

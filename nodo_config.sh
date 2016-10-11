@@ -18,7 +18,7 @@ do
 	echo ""
 	echo "Please access your MiniNodo wallet at https://$current_ip:3000"
 	echo -e "\n"
-	echo -e "Enter your selection or press enter to check status of wallet and server\c"
+	echo -e "Enter your selection or press enter to check status of wallet and server: \c"
 	echo ""
 	read answer
 	export running=$(service mos_nodowallet status)
