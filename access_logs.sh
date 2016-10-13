@@ -47,7 +47,9 @@ do
 		./view_log.sh;;
 		r) exit ;;
 	esac
-	echo "Press return to continue"
+	echo -e "\n@@@@@@@@@@@@@@@@@@@@@@@@@@"
+	echo -e "@Press return to continue@"
+	echo    "@@@@@@@@@@@@@@@@@@@@@@@@@@"
 	read goback
 	clear
 done

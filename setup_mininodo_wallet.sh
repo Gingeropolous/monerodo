@@ -56,6 +56,11 @@ do
 	clear
 done
 clear
+
+#Record wallet file info in text file
+echo $nodowallet > /home/bob/.monerodo/nodowallet.info
+sudo tail -n +1 /monerodo/wallets/$nodowallet.address* >> /home/bob/.monerodo/nodowallet.info
+
 echo "We will now create the .conf file that will load monero-wallet-cli on boot."
 echo "Press enter to continue. At some point during the process, you will be asked to enter your UNIX password."
 read input2

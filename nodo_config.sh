@@ -4,11 +4,14 @@
 #Menu
 while true
 do
+	export running=$(service mos_nodowallet status)
+        export mos_service="mos_nodowallet"
 	clear
 	echo "================="
 	echo "Manage MiniNodo Settings"
 	echo "================="
 	cat /home/bob/.monerodo/status_nodowallet.txt
+	./service_status.sh
 	echo "================="
 	echo "[1] Setup the mininodo wallet server (must be done first)"
 	echo "[2] Turn on wallet server now and on boot"
@@ -18,11 +21,12 @@ do
 	echo ""
 	echo "Please access your MiniNodo wallet at https://$current_ip:3000"
 	echo -e "\n"
+	echo "The currently configured MiniNodo wallet is:"
+	cat /home/bob/.monerodo/nodowallet.info
+	echo -e "\n"
 	echo -e "Enter your selection or press enter to check status of wallet and server: \c"
 	echo ""
 	read answer
-	export running=$(service mos_nodowallet status)
-	export mos_service="mos_nodowallet"
 	case "$answer" in
 		1) ./setup_mininodo_wallet.sh;;
 
