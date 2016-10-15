@@ -3,12 +3,16 @@
 
 #Menu
 this_service="nvidia solo daemon miner"
+export mos_service="mos_nvidia_solo"
 while true
 do
 	clear
 	echo "================="
 	echo "Manage $this_service settings"
+	export running=$(service $mos_service status)
+        ./service_status.sh
 	echo "================="
+	echo "AS OF 20161013, this doesn't work due to some changes in the daemon"
 	echo "[1] Turn $this_service on now and on boot"
 	echo "[2] Turn $this_service off"
 	echo "[3] Turn $this_service off now and stop from running on boot"
@@ -16,8 +20,6 @@ do
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer
-        export mos_service="mos_nvidia_solo"
-	export running=$(service $mos_service status)
 	case "$answer" in
 		0) ./setup_pool_wallet.sh;;
 		1) ./service_on.sh;;

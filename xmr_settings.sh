@@ -2,12 +2,15 @@
 #MONERODO Manage Monero Settings
 
 #Menu
+export mos_service="mos_bitmonero"
 while true
 do
 	clear
 	echo "================="
 	echo "Manage Monero Core Settings"
         cat /home/bob/.monerodo/status.txt
+        export running=$(service $mos_service status)
+        ./service_status.sh
 	echo "================="
 	echo "[1] Monero Core File Management"
 	echo "[2] Turn monero core on"
@@ -21,8 +24,6 @@ do
 	echo -e "\n"
 	echo -e "Enter your selection or just press return to update status: \c"
 	read answer
-	export running=$(service mos_bitmonero status)
-	export mos_service="mos_bitmonero"
 	case "$answer" in
 		1) ./xmr_file_management.sh;;
 		2) ./service_on.sh;;

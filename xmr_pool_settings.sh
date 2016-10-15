@@ -2,13 +2,17 @@
 #MONERODO pool settings
 
 #Menu
+export mos_service="mos_monerowallet"
+this_service="pool wallet and server"
 while true
 do
 	clear
 	echo "================="
-	echo "Manage Pool server settings"
+	echo "Manage $this_service settings"
 	echo "================="
 	cat /home/bob/.monerodo/status_poolwallet.txt
+        export running=$(service $mos_service status)
+        ./service_status.sh
 	echo "================="
 	echo "[0] Modify pool server conf file (setup the pool wallet)"
 	echo "[1] Turn pool on now and on boot"
@@ -20,8 +24,6 @@ do
 	echo -e "\n"
 	echo -e "Enter your selection and press enter or just press enter to check status: \c"
 	read answer
-        export mos_service="mos_monerowallet"
-	export running=$(service $mos_service status)
 	case "$answer" in
 		0) ./setup_pool_wallet.sh;;
 		1) ./service_on.sh;;

@@ -3,11 +3,14 @@
 
 #Menu
 this_service="nvidia external pool miner"
+export mos_service="mos_ext_miner"
 while true
 do
 	clear
 	echo "================="
 	echo "Manage $this_service settings"
+        export running=$(service $mos_service status)
+        ./service_status.sh
 	echo "================="
 	echo "[1] Turn $this_service on now and on boot"
 	echo "[2] Turn $this_service off"
@@ -16,8 +19,6 @@ do
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer
-        export mos_service="mos_ext_miner"
-	export running=$(service $mos_service status)
 	case "$answer" in
 		0) ./setup_pool_wallet.sh;;
 		1) ./service_on.sh;;

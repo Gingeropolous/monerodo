@@ -24,6 +24,7 @@ do
 	clear
 	echo "================="
 	echo "Manage $this_service settings"
+	monerod --rpc-bind-ip $current_ip status
 	echo "================="
 	echo "[1] Turn $this_service on now"
 	echo "[2] Turns $this_service on now and on and boot"

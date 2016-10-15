@@ -8,14 +8,12 @@ do
 	echo "================="
 	echo "Manage Monero Settings"
         echo "================="
-	echo "[0] Set mining address"
+	echo "[0] Set mining address -- DO THIS BEFORE MINING!"
 	echo "[1] Change Nvidia GPU mining settings"
-	echo "[2] Change AMD GPU mining settings"
-	echo "[3] Change onboard video mining settings"
-	echo "[4] Change CPU mining settings"
-	echo "[5] Change pool settings"
-	echo "[6] Change Monero core settings"
-	echo "[7] Manage MiniNodo Wallet Server"
+	echo "[2] Change CPU mining settings"
+	echo "[3] Change pool settings"
+	echo "[4] Change Monero core settings"
+	echo "[5] Manage MiniNodo Wallet Server"
 	echo "[fix] Restart wallet server, pool, and miner." 
 	echo "[r] Return to device management menu"
 	echo -e "\n"
@@ -24,12 +22,10 @@ do
 	case "$answer" in
 		0) ./monero_mine_address.sh;;
 		1) ./nvidia_settings.sh;;
-		2) echo "Doesn't exist sorry" && sleep 2 ;;
-		3) ./onboard_gpu.sh;;
-		4) ./cpu_settings.sh;;
-		5) ./xmr_pool_settings.sh;;
-		6) ./xmr_settings.sh;;
-		7) ./nodo_config.sh;;
+		2) ./cpu_settings.sh;;
+		3) ./xmr_pool_settings.sh;;
+		4) ./xmr_settings.sh;;
+		5) ./nodo_config.sh;;
 		fix) sudo service mos_monerowallet reload;;
 		r) exit ;;
 	esac

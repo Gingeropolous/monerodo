@@ -6,3 +6,17 @@ the expected software behavior. These can all be eventually addressed.
 Currently the Monerodo OS assumes that all of the daemons are already installed, as this OS is meant to be the front end for the Monerodo, a hardware
 device that runs a full monero node and mining pool. Thus, the scripts are made to modify existing software, not add it. A full Monerodo creation
 script can be developed.
+
+Existing directory structures as of v3, 20161013
+
+/home/bob/monerodo 
+Main monerodo directory, git managed
+
+/home/bob/.monerodo
+Local storage of modified conf files so that updates to the git repo don't immediately change things
+
+/monerodo
+Contains pool software, miniNodo software, and wallet storage directory. Also contains first run scripts and ip change scripts and some logs
+
+/.bitmonero
+location of monerod
