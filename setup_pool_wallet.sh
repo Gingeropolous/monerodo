@@ -67,7 +67,7 @@ export mos_service="mos_monerowallet"
 ./service_off.sh
 
 mv $FILEDIR/run_wallet.sh $FILEDIR/run_wallet.previous
-echo -e "#!/bin/bash \n exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " >> $FILEDIR/run_wallet.sh
+echo -e "#!/bin/bash \n exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " > $FILEDIR/run_wallet.sh
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
 sudo cp /monerodo/pool_add.txt /home/$USER/.monerodo/pool_add.txt
@@ -90,11 +90,11 @@ sudo sed -i "s/.*poolAddress.*/$new_line/" $FILEDIR/config.json
 echo "This was the line entered into your config.json for your pool server"
 echo $new_line
 echo "This is the line in your config.json"
-sudo cp $FILEDIR/config.json /monerodo/zone_pool/
+sudo cp $FILEDIR/config.json /monerodo/clintar_pool/
 grep "poolAddress" $FILEDIR/config.json
 
-sudo cp $FILEDIR/mos_poolnode.conf /etc/init/
-sudo cp $FILEDIR/mos_monerowallet.conf /etc/init/
+# NEED TO ADD INTIALIZE DAEMON THING HERE
+
 
 echo "======================="
 echo "You'll need to manually turn on the pool in the settings menu"
