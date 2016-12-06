@@ -10,7 +10,7 @@ do
 	echo "================="
 	echo "Manage $this_service settings"
 	echo "================="
-	cat /home/bob/.monerodo/status_poolwallet.txt
+	cat /home/$USER/.monerodo/status_poolwallet.txt
         export running=$(service $mos_service status)
         ./service_status.sh
 	echo "================="

@@ -26,10 +26,10 @@ do
 	case "$answer" in
 		all) sudo apt-get update && sudo apt-get upgrade;;
 		sec) sudo unattended-upgrades;;
-		auto) sudo cp /home/bob/.monerodo/auto_reboot.yes /etc/apt/apt.conf.d/50unattended-upgrades;;
-		off)sudo cp /home/bob/.monerodo/auto_reboot.no /etc/apt/apt.conf.d/50unattended-upgrades;; 
-		3am)sudo cp /home/bob/.monerodo/auto_reboot.3am /etc/apt/apt.conf.d/50unattended-upgrades;;
-		disable)sudo cp /home/bob/.monerodo/auto_reboot.disable /etc/apt/apt.conf.d/50unattended-upgrades;;
+		auto) sudo cp /home/$USER/.monerodo/auto_reboot.yes /etc/apt/apt.conf.d/50unattended-upgrades;;
+		off)sudo cp /home/$USER/.monerodo/auto_reboot.no /etc/apt/apt.conf.d/50unattended-upgrades;; 
+		3am)sudo cp /home/$USER/.monerodo/auto_reboot.3am /etc/apt/apt.conf.d/50unattended-upgrades;;
+		disable)sudo cp /home/$USER/.monerodo/auto_reboot.disable /etc/apt/apt.conf.d/50unattended-upgrades;;
 		r) exit ;;
 	esac
 	echo "Press enter to continue"

@@ -3,7 +3,7 @@
 
 now=$(date +"%m_%d_%Y")
 
-cd /home/bob/monero_files/
+cd /home/$USER/monero_files/
 mkdir monero_$now
 cd monero_$now
 
@@ -15,11 +15,11 @@ tar -xjvf linux64
 export running=$(service mos_bitmonero status)
 export mos_service="mos_bitmonero"
 
-/home/bob/monerodo/service_off.sh
+/home/$USER/monerodo/service_off.sh
 
 sudo cp monerod /bin
 sudo cp monero-wallet-cli /bin
 
 echo "You'll have to turn monero core on again in the settings menu. Press enter to continue"
 read goback
-cd /home/bob/monerodo/
+cd /home/$USER/monerodo/

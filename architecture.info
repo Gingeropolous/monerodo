@@ -9,10 +9,10 @@ script can be developed.
 
 Existing directory structures as of v3, 20161013
 
-/home/bob/monerodo 
+/home/$USER/monerodo 
 Main monerodo directory, git managed
 
-/home/bob/.monerodo
+/home/$USER/.monerodo
 Local storage of modified conf files so that updates to the git repo don't immediately change things
 
 /monerodo

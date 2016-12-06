@@ -9,7 +9,7 @@ do
 	echo "Manage Monero Settings"
         echo "================="
 	echo "[0] Set mining address -- DO THIS BEFORE MINING!"
-	echo "[1] Change Nvidia GPU mining settings"
+	echo "[1] Change AMD GPU mining settings"
 	echo "[2] Change CPU mining settings"
 	echo "[3] Change pool settings"
 	echo "[4] Change Monero core settings"
@@ -21,7 +21,7 @@ do
 	read answer
 	case "$answer" in
 		0) ./monero_mine_address.sh;;
-		1) ./nvidia_settings.sh;;
+		1) ./AMD_settings.sh;;
 		2) ./cpu_settings.sh;;
 		3) ./xmr_pool_settings.sh;;
 		4) ./xmr_settings.sh;;

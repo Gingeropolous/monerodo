@@ -8,7 +8,7 @@ do
 	clear
 	echo "================="
 	echo "Manage Monero Core Settings"
-        cat /home/bob/.monerodo/status.txt
+        cat /home/$USER/.monerodo/status.txt
         export running=$(service $mos_service status)
         ./service_status.sh
 	echo "================="

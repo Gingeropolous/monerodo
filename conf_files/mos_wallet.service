@@ -1,0 +1,15 @@
+[Unit]
+Description=Monero Pool Wallet
+After=network.target
+
+[Service]
+User=monrig
+Group=monrig
+WorkingDirectory=~
+
+Type=simple
+ExecStart=/home/monrig/.monerodo/runpoolwallet.sh
+
+[Install]
+WantedBy=multi-user.target
+

@@ -7,9 +7,9 @@ do
 	echo "================="
 	echo "Get info on the Monero daemon"
 	echo "================="
-	cat /home/bob/.monerodo/status_poolwallet.txt
-	cat /home/bob/.monerodo/status_nodowallet.txt
-	cat /home/bob/.monerodo/status.txt
+	cat /home/$USER/.monerodo/status_poolwallet.txt
+	cat /home/$USER/.monerodo/status_nodowallet.txt
+	cat /home/$USER/.monerodo/status.txt
 	echo "!!!!!!!! Status of daemon !!!!!!!!!!"
 	monerod --rpc-bind-ip $current_ip status
 	echo "other options coming soon"

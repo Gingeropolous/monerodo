@@ -2,15 +2,15 @@
 #MONERODO operating script to load upon login
 
 #make username variable global
-export u="$USER" #should be deprecated by now, all instances replaced with bob
+export u="$USER" # New version attempts to use $USER instead of $u or bob
 export current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 export help="Type 'back' to return to previous menu"
-export FILEDIR=$(grep -n 'filedir' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
-export VERSION=$(grep -n 'version' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+export FILEDIR=$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+export VERSION=$(grep -n 'version' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
 #### Duh
 
-cd /home/bob/monerodo/
+cd /home/$USER/monerodo/
 
 ######### Checks if this is first time running, forces change of password and other important settings
 # Put into its own script 20160518
@@ -43,7 +43,7 @@ do
 	echo "================="
 	echo "Monerodo Menu. Version $VERSION"
 	echo "================="
-	cat /home/bob/.monerodo/status.txt
+	cat /home/$USER/.monerodo/status.txt
 	echo "================="
 	echo "[0] Recommended things to set up first!"
 	echo "[1] Monerodo device management"

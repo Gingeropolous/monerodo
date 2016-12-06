@@ -1,0 +1,15 @@
+[Unit]
+Description=Monero Pool Server
+After=network.target
+
+[Service]
+User=monrig
+Group=monrig
+WorkingDirectory=~
+
+Type=simple
+ExecStart=/home/monrig/.monerodo/pool.sh                           
+
+[Install]
+WantedBy=multi-user.target
+

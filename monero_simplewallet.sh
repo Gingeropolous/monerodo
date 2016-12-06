@@ -15,4 +15,4 @@ echo "========================="
 echo ""
 sudo monero-wallet-cli --daemon-host $current_ip 
 
-cd /home/bob/monerodo
+cd /home/$USER/monerodo

@@ -10,7 +10,7 @@ do
 	echo "================="
 	echo "Manage MiniNodo Settings"
 	echo "================="
-	cat /home/bob/.monerodo/status_nodowallet.txt
+	cat /home/$USER/.monerodo/status_nodowallet.txt
 	./service_status.sh
 	echo "================="
 	echo "[1] Setup the mininodo wallet server (must be done first)"
@@ -22,7 +22,7 @@ do
 	echo "Please access your MiniNodo wallet at https://$current_ip:3000"
 	echo -e "\n"
 	echo "The currently configured MiniNodo wallet is:"
-	cat /home/bob/.monerodo/nodowallet.info
+	cat /home/$USER/.monerodo/nodowallet.info
 	echo -e "\n"
 	echo -e "Enter your selection or press enter to check status of wallet and server: \c"
 	echo ""

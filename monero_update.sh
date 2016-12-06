@@ -1,7 +1,7 @@
 #!/bin/bash
 # Monero Update script
 
-#cd /home/bob/monerodo/
+#cd /home/$USER/monerodo/
 #git pull
 #chmod +x *.sh
 ./dep_list.sh
@@ -22,15 +22,15 @@
 #echo $GBMEM
 #Pull repository for updates and compile
 
-DIRECTORY="/home/bob/bitmonero"
+DIRECTORY="/home/$USER/bitmonero"
 if [ -d "$DIRECTORY" ]; then
-  cd /home/bob/bitmonero
+  cd /home/$USER/bitmonero
   git pull
   make
 else
-  cd /home/bob/
+  cd /home/$USER/
   git clone https://github.com/monero-project/bitmonero.git
-  cd /home/bob/bitmonero
+  cd /home/$USER/bitmonero
   git pull
   make
 fi
@@ -38,6 +38,6 @@ fi
 # Copy binaries to /bin
 #Restart service to use new binaries
 sudo service mos_bitmonero stop
-sudo cp /home/bob/bitmonero/build/release/bin/monerod /bin
-sudo cp /home/bob/bitmonero/build/release/bin/monero-wallet-cli /bin
+sudo cp /home/$USER/bitmonero/build/release/bin/monerod /bin
+sudo cp /home/$USER/bitmonero/build/release/bin/monero-wallet-cli /bin
 sudo service mos_bitmonero start
