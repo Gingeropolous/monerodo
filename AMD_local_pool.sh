@@ -2,7 +2,7 @@
 #MONERODO nvidia local pool settings
 
 #Menu
-this_service="nvidia local pool miner"
+this_service="amd local pool miner"
 export mos_service="mos_miner"
 while true
 do

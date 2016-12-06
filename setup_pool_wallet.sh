@@ -1,7 +1,7 @@
 #!/bin/bash
 #MONERODO script to setup pool wallet
 
-FILEDIR=$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+FILEDIR=/home/$USER/$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
 
 echo "This script configures your Monerodo with a new pool wallet."
@@ -67,7 +67,8 @@ export mos_service="mos_monerowallet"
 ./service_off.sh
 
 mv $FILEDIR/run_wallet.sh $FILEDIR/run_wallet.previous
-echo -e "#!/bin/bash \n exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " > $FILEDIR/run_wallet.sh
+echo -e "#!/bin/bash \n\ 
+exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " > $FILEDIR/run_wallet.sh
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
 sudo cp /monerodo/pool_add.txt /home/$USER/.monerodo/pool_add.txt

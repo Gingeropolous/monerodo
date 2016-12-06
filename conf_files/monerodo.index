@@ -1,2 +1,3 @@
-filedir=/home/$USER/.monerodo
+#!/bin/bash
+filedir=.monerodo
 version=3.0

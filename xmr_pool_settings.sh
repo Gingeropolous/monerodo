@@ -15,9 +15,10 @@ do
         ./service_status.sh
 	echo "================="
 	echo "[0] Modify pool server conf file (setup the pool wallet)"
-	echo "[1] Turn pool on now and on boot"
+	echo "[1] Turn pool on now"
 	echo "[2] Turn pool off"
-	echo "[3] Turn pool off now and stop from running on boot"
+	echo "[3] Make pool start on boot"
+	echo "[4] Don't start on boot"
 	echo "[r] Return to device management menu"
 	echo ""
 	echo "Please visit http://$current_ip/pool to see whether your pool is running"
@@ -28,8 +29,8 @@ do
 		0) ./setup_pool_wallet.sh;;
 		1) ./service_on.sh;;
 		2) ./service_off.sh;;
-		3) ./service_off.sh
-		sudo rm /etc/init/$mos_service.conf;;
+		3) ./service_boot.sh;;
+		4) ./service_noboot.sh;;
 		r) exit ;;
 	esac
 	clear
