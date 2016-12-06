@@ -3,7 +3,7 @@ stop on stopping mos_bitmonero
 console log
 respawn
 respawn limit 10 10
-post-stop exec echo "Your pool wallet is not running" > /home/bob/.monerodo/status_poolwallet.txt
+post-stop exec echo "Your pool wallet is not running" > /home/$USER/.monerodo/status_poolwallet.txt
 
 
 

@@ -3,7 +3,7 @@ stop on stopping mos_bitmonero
 console log
 respawn
 respawn limit 10 10
-post-stop exec echo "Your MiniNodo wallet is not running" > /home/bob/.monerodo/status_nodowallet.txt
+post-stop exec echo "Your MiniNodo wallet is not running" > /home/$USER/.monerodo/status_nodowallet.txt
 
 
 

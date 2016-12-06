@@ -5,7 +5,7 @@
 # CHECK IF IP OF MONERODO HAS CHANGED.
 last_ip="$(awk '{print;}' /monerodo/last.ip)"
 current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
-FILEDIR=$(grep -n 'filedir' /home/bob/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+FILEDIR=$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
 
 if [[ $current_ip != $last_ip ]]; then
@@ -25,7 +25,7 @@ if [[ $current_ip != $last_ip ]]; then
 	find /var/www/ -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
 	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/zone_pool/*
 	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/sam_pool/*
-	sudo find /home/bob/ -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
+	sudo find /home/$USER/ -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
 
         # sudo service mos_bitmonero start  # Removed 20160827 because if the daemon is supposed to be off this doesn't make sense
 
