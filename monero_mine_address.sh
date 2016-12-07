@@ -46,7 +46,7 @@ new_ip="\"url\": \"stratum+tcp://$ext_mine:3333\","
 sudo sed -i "s/.*user.*/$new_line/" $FILEDIR/xmr_ext.conf
 sudo sed -i "s/.*url.*/$new_ip/" $FILEDIR/xmr_ext.conf
 
-
+sudo cp xmr.conf xmr_ext.conf /monerodo/
 
 ###############################
 #write conf files for cpu miner
