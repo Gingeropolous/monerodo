@@ -1,8 +1,9 @@
 #!/bin/bash
 #MONERODO Change  miner address
 #
-FILEDIR=$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+FILEDIR=/home/$USER/$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')" 
+now=$(date +"%m_%d_%Y")
 
 clear
 #receive new mining address, export to global MOS variable, and store in MOS system folder
@@ -24,42 +25,28 @@ echo "If yes, enter the address. etc: monerohash.com"
 echo "If you don't want to set one, just hit enter"
 read ext_mine
 
-# write conf file for nvidia miner
+# write conf file for AMD miner for local pool
 
-mv $FILEDIR/mos_miner.conf $FILEDIR/mos_miner.previous
+cp $FILEDIR/xmr.conf $FILEDIR/xmr.conf.$now
 
-echo -e  "start on started mos_poolnode \n\
-stop on stopping mos_poolnode \n\
-pre-start exec nvidia-persistenced \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-exec ccminer -o stratum+tcp://$current_ip:5555 -u $mine_add -p x \n\
-" > $FILEDIR/mos_miner.conf
+# new_add="$(awk '{print;}' $FILEDIR/mine_add.txt)"
 
-# write conf file for nvidia external pool miner
+echo "This is your new mining address: "$mine_add
+new_line="\"user\": \"$mine_add\","
+new_ip="\"url\": \"stratum+tcp://$current_ip:3333\","
+sudo sed -i "s/.*user.*/$new_line/" $FILEDIR/xmr.conf
+sudo sed -i "s/.*url.*/$new_ip/" $FILEDIR/xmr.conf
 
-mv $FILEDIR/mos_ext_miner.conf $FILEDIR/mos_ext_miner.previous
+# write conf file for AMD miner for external pool
 
-echo -e  "start on (net-device-up IFACE!=lo) and runlevel [2345] \n\
-stop on shutdown \n\
-pre-start exec nvidia-persistenced \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-exec ccminer -o stratum+tcp://$ext_mine:5555 -u $mine_add -p x \n\
-" > $FILEDIR/mos_ext_miner.conf
+cp $FILEDIR/xmr_ext.conf $FILEDIR/xmr_ext.conf.$now
 
-mv $FILEDIR/mos_nvidia_solo.conf $FILEDIR/mos_nvidia_solo.previous
+echo "This is your new mining address: "$mine_add
+new_ip="\"url\": \"stratum+tcp://$ext_mine:3333\","
+sudo sed -i "s/.*user.*/$new_line/" $FILEDIR/xmr_ext.conf
+sudo sed -i "s/.*url.*/$new_ip/" $FILEDIR/xmr_ext.conf
 
-echo -e  "start on started mos_bitmonero \n\
-stop on stopping mos_bitmonero \n\
-pre-start exec nvidia-persistenced \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-exec ccminer -o daemon+tcp://$current_ip:18081/json_rpc -u $mine_add -p x \n\
-" > $FILEDIR/mos_nvidia_solo.conf
+
 
 ###############################
 #write conf files for cpu miner
@@ -85,63 +72,23 @@ less /proc/cpuinfo > $FILEDIR/cpuinfo.txt
 
 if [ "$(grep aes $FILEDIR/cpuinfo.txt)" ] ;
 then
-mv $FILEDIR/mos_cpuminer.conf $FILEDIR/mos_cpuminer.previous
-echo -e  "start on started mos_poolnode \n\
-stop on stopping mos_poolnode \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-exec sudo minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
-" > $FILEDIR/mos_cpuminer.conf
+mv $FILEDIR/mos_cpuminer.sh $FILEDIR/mos_cpuminer.sh.$now
+echo -e  "#!/bin/bash \n\
+minerd -a cryptonight -o stratum+tcp://$current_ip:3333 -u $mine_add -p x -t $n \n\
+" > $FILEDIR/mos_cpuminer.sh
 
-mv $FILEDIR/mos_ext_cpuminer.conf $FILEDIR/mos_ext_cpuminer.previous
-echo -e  "start on (net-device-up IFACE!=lo) and runlevel [2345] \n\
-stop on shutdown \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-exec minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
-" > $FILEDIR/mos_ext_cpuminer.conf
+mv $FILEDIR/mos_ext_cpuminer.sh $FILEDIR/mos_ext_cpuminer.sh.$now
+echo -e  "#!/bin/bash \n\
+minerd -a cryptonight -o stratum+tcp://$ext_mine:3333 -u $mine_add -p x -t $n \n\
+" > $FILEDIR/mos_ext_cpuminer.sh
 
-mv $FILEDIR/mos_daemonminer.conf $FILEDIR/mos_daemonminer.previous
-echo -e  "start on bitmonero_sync \n\
-stop on stopping mos_bitmonero \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-exec minerd -a cryptonight -o daemon+tcp://$current_ip:18081:/json_rpc -u $mine_add -p x -t $n \n\
-" > $FILEDIR/mos_daemonminer.conf
+mv $FILEDIR/mos_daemonminer.sh $FILEDIR/mos_daemonminer.sh.$now
+echo -e  "#!/bin/bash \n\
+minerd -a cryptonight -o daemon+tcp://$current_ip:18081:/json_rpc -u $mine_add -p x -t $n \n\
+" > $FILEDIR/mos_daemonminer.sh
 
 else
-mv $FILEDIR/mos_cpuminer.conf $FILEDIR/mos_cpuminer.previous
-echo -e  "start on started mos_poolnode \n\
-stop on stopping mos_poolnode \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-chdir /monerodo/yam/ \n\
-exec ./yamgeneric -c x -t $n -M stratum+tcp://$current_ip:x@$mine_add:3333/xmr \n\
-" > $FILEDIR/mos_cpuminer.conf
-
-mv $FILEDIR/mos_ext_cpuminer.conf $FILEDIR/mos_ext_cpuminer.previous
-echo -e  "start on (net-device-up IFACE!=lo) and runlevel [2345] \n\
-stop on shutdown \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-chdir /monerodo/yam/ \n\
-exec ./yamgeneric -c x -t $n -M stratum+tcp://$ext_mine:x@$mine_add:3333/xmr \n\
-" > $FILEDIR/mos_ext_cpuminer.conf
-
-mv $FILEDIR/mos_daemonminer.conf $FILEDIR/mos_daemonminer.previous
-echo -e  "start on bitmonero_sync \n\
-stop on stopping mos_bitmonero \n\
-console log \n\
-respawn \n\
-respawn limit 10 10 \n\
-exec minerd -a cryptonight -o daemon+tcp://$current_ip:18081:/json_rpc -u $mine_add -p x -t $n \n\
-" > $FILEDIR/mos_daemonminer.conf
-
+echo "Your CPU does not have AES, so you shouldn't use your CPU. Sorry."
 fi
 clear
 ;;
