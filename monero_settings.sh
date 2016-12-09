@@ -21,7 +21,7 @@ do
 	read answer
 	case "$answer" in
 		0) ./monero_mine_address.sh;;
-		1) ./AMD_settings.sh;;
+		1) ./amd_settings.sh;;
 		2) ./cpu_settings.sh;;
 		3) ./xmr_pool_settings.sh;;
 		4) ./xmr_settings.sh;;

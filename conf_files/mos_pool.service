@@ -1,6 +1,7 @@
 [Unit]
 Description=Monero Pool Server
-After=network.target
+After=network.target mos_wallet.service
+Requires=mos_wallet.service
 
 [Service]
 User=monrig
@@ -8,7 +9,7 @@ Group=monrig
 WorkingDirectory=~
 
 Type=simple
-ExecStart=/home/monrig/.monerodo/pool.sh                           
+ExecStart=/home/monrig/.monerodo/run_pool.sh                           
 
 [Install]
 WantedBy=multi-user.target

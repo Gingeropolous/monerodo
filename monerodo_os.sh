@@ -5,7 +5,7 @@
 export u="$USER" # New version attempts to use $USER instead of $u or bob
 export current_ip="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 export help="Type 'back' to return to previous menu"
-export FILEDIR=$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+export FILEDIR=/home/$USER/$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 export VERSION=$(grep -n 'version' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
 #### Duh

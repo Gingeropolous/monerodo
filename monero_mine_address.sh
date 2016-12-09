@@ -18,7 +18,6 @@ back) exit ;;
 *)
 export mine_add
 echo $mine_add > $FILEDIR/mine_add.txt
-sudo cp $FILEDIR/mine_add.txt /monerodo/ #again, might be able to keep in home hidden
 
 echo "Do you want to setup an external pool?"
 echo "If yes, enter the address. etc: monerohash.com"
@@ -29,24 +28,19 @@ read ext_mine
 
 cp $FILEDIR/xmr.conf $FILEDIR/xmr.conf.$now
 
-# new_add="$(awk '{print;}' $FILEDIR/mine_add.txt)"
-
-echo "This is your new mining address: "$mine_add
+echo "This is your new mining address: $mine_add"
 new_line="\"user\": \"$mine_add\","
-new_ip="\"url\": \"stratum+tcp://$current_ip:3333\","
-sudo sed -i "s/.*user.*/$new_line/" $FILEDIR/xmr.conf
-sudo sed -i "s/.*url.*/$new_ip/" $FILEDIR/xmr.conf
+new_ip="\"url\": \"stratum+tcp:\/\/$current_ip:3333\","
+sed -i "s/.*user.*/$new_line/g" $FILEDIR/xmr.conf
+sed -i "s/.*url.*/$new_ip/g" $FILEDIR/xmr.conf
 
 # write conf file for AMD miner for external pool
 
 cp $FILEDIR/xmr_ext.conf $FILEDIR/xmr_ext.conf.$now
 
-echo "This is your new mining address: "$mine_add
-new_ip="\"url\": \"stratum+tcp://$ext_mine:3333\","
-sudo sed -i "s/.*user.*/$new_line/" $FILEDIR/xmr_ext.conf
-sudo sed -i "s/.*url.*/$new_ip/" $FILEDIR/xmr_ext.conf
-
-sudo cp xmr.conf xmr_ext.conf /monerodo/
+new_ip="\"url\": \"stratum+tcp:\/\/$ext_mine:3333\","
+sed -i "s/.*user.*/$new_line/g" $FILEDIR/xmr_ext.conf
+sed -i "s/.*url.*/$new_ip/g" $FILEDIR/xmr_ext.conf
 
 ###############################
 #write conf files for cpu miner

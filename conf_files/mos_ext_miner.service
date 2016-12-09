@@ -1,0 +1,16 @@
+[Unit]
+Description=Monero Solo Pool Miner
+After=network.target mos_pool.service
+Requires=mos_pool.service
+
+[Service]
+User=monrig
+Group=monrig
+WorkingDirectory=~
+
+Type=simple
+ExecStart=/home/monrig/.monerodo/run_ext_miner.sh
+
+[Install]
+WantedBy=multi-user.target
+

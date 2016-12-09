@@ -1,7 +1,7 @@
 #!/bin/bash
 #MONERODO script to setup pool wallet
 
-FILEDIR=/home/$USER/$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
+# FILEDIR=/home/$USER/$(grep -n 'filedir' /home/$USER/monerodo/conf_files/monerodo.index |cut -d"=" -f2)
 
 
 echo "This script configures your Monerodo with a new pool wallet."
@@ -13,7 +13,7 @@ echo ""
 
 echo "For your reference, these are the available wallets in your wallet directory."
 echo "------------------------------------------------"
-cd /monerodo/wallets/
+cd $FILEDIR/wallets/
 dir *.bin
 cd /home/$USER/monerodo/
 echo "Do you want to use one of these wallets? yes / no"
@@ -36,7 +36,7 @@ while ((test_add == 0))
 do
 	echo "For your reference, these are the available wallets in your wallet directory."
 	echo "------------------------------------------------"
-	cd /monerodo/wallets/
+	cd $FILEDIR/wallets/
 	dir *.bin
 	cd /home/$USER/monerodo/
 	echo "------------------------------------------------"
@@ -67,35 +67,30 @@ export mos_service="mos_monerowallet"
 ./service_off.sh
 
 mv $FILEDIR/run_wallet.sh $FILEDIR/run_wallet.previous
-echo -e "#!/bin/bash \n\ 
-exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file /monerodo/wallets/$poolwallet --password $poolpass " > $FILEDIR/run_wallet.sh
+echo -e "#!/bin/bash \n 
+exec monero-wallet-cli --daemon-host $current_ip --rpc-bind-port 18082 --rpc-bind-ip 127.0.0.1 --wallet-file $FILEDIR/wallets/$poolwallet --password $poolpass " > $FILEDIR/run_wallet.sh
 
 # modify pool address in config.json in local monerodo directory and copy to pool directory
-sudo cp /monerodo/pool_add.txt /home/$USER/.monerodo/pool_add.txt
-sudo cp /monerodo/wallets/$poolwallet.address.txt /home/$USER/.monerodo/$poolwallet.address.txt
-sudo chmod 777 /home/$USER/.monerodo/pool_add.txt
-sudo chmod 777 /home/$USER/.monerodo/$poolwallet.address.txt
+# sudo cp /monerodo/wallets/$poolwallet.address.txt /home/$USER/.monerodo/$poolwallet.address.txt
+# sudo chmod 777 /home/$USER/.monerodo/pool_add.txt
+# sudo cp $FILEDIR/pool_add.txt /home/$USER/.monerodo/pool_add.txt
 
-
-old_pool="$(awk '{print;}' /home/$USER/.monerodo/pool_add.txt)"
 ext=".address.txt"
-new_pool="$(awk '{print;}' /home/$USER/.monerodo/$poolwallet$ext)"
+new_pool="$(awk '{print;}' $FILEDIR/wallets/$poolwallet$ext)"
 echo "This is your new pool wallet address: "$new_pool
 new_line="\"poolAddress\": \"$new_pool\","
 
-sudo sed -i "s/.*poolAddress.*/$new_line/" $FILEDIR/config.json
+sed -i "s/.*poolAddress.*/$new_line/" $FILEDIR/config.json
 
-#echo $old_pool
 #echo $ext
 #echo $new_pool
 echo "This was the line entered into your config.json for your pool server"
 echo $new_line
 echo "This is the line in your config.json"
-sudo cp $FILEDIR/config.json /monerodo/clintar_pool/
+cp $FILEDIR/config.json /home/$USER/clintar_pool/
 grep "poolAddress" $FILEDIR/config.json
 
 # NEED TO ADD INTIALIZE DAEMON THING HERE
-
 
 echo "======================="
 echo "You'll need to manually turn on the pool in the settings menu"
