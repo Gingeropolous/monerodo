@@ -45,7 +45,6 @@ do
 	echo "================="
 	cat /home/$USER/.monerodo/status.txt
 	echo "================="
-	echo "[0] Recommended things to set up first!"
 	echo "[1] Monerodo device management"
 	echo "[2] Manage or create your account with Monero Core"
 	echo "[3] Restore your account from mnemonic seed"
