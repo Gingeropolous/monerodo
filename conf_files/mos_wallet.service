@@ -1,12 +1,15 @@
 [Unit]
 Description=Monero Pool Wallet
-After=network.target
+After=network.target mos_changeip.service network-online.target
 Binds-to=mos_pool.service
+Wants=network-online.target
 
 [Service]
 User=monrig
 Group=monrig
 WorkingDirectory=~
+Restart=on-failure
+RestartSec=2
 
 Type=simple
 ExecStart=/home/monrig/.monerodo/run_wallet.sh

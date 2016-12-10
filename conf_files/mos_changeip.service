@@ -1,0 +1,16 @@
+[Unit]
+Description=Monero Pool Server
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=~
+
+Type=simple
+ExecStart=/home/monrig/.monerodo/change_ip.sh                           
+
+[Install]
+WantedBy=multi-user.target
+

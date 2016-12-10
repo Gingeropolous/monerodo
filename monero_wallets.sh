@@ -16,10 +16,10 @@ do
 	echo -e "Enter your selection"
 	echo "Or leave blank and press enter to update info"
 	read answer
-	cd /monerodo/wallets/
+	cd $FILEDIR/wallets/
 	case "$answer" in
-		1) sudo tail -n +1 *.address* && echo -e "\n";;
-		2) cd cold && sudo tail -n +1 *.address* && echo -e "\n" && cd ..;;
+		1) tail -n +1 *.address* && echo -e "\n";;
+		2) cd cold && tail -n +1 *.address* && echo -e "\n" && cd ..;;
 
 		3)
 		echo "These are the current wallets in your wallet directory"

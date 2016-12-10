@@ -1,7 +1,8 @@
 [Unit]
 Description=Monero Pool Server
-After=network.target mos_wallet.service
+After=network.target mos_wallet.service mos_changeip.service network-online.target
 Requires=mos_wallet.service
+Wants=network-online.target
 
 [Service]
 User=monrig

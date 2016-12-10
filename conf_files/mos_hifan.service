@@ -1,0 +1,15 @@
+[Unit]
+Description=Monero High Fan Speed
+After=network.target network-online.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/monrig/.monerodo
+
+Type=simple
+ExecStart=/home/monrig/.monerodo/hifan.sh
+
+[Install]
+WantedBy=multi-user.target
+

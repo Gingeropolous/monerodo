@@ -1,6 +1,7 @@
 [Unit]
 Description=Monero Full Node
-After=network.target
+After=network.target mos_changeip.service network-online.target
+Wants=network-online.target
 
 [Service]
 User=monrig
@@ -8,7 +9,7 @@ Group=monrig
 WorkingDirectory=~
 
 Type=forking
-ExecStart=/bin/monerod --detach --config-file /etc/monerod.conf
+ExecStart=/bin/monerod --detach --config-file /home/monrig/.monerodo/monerod.conf
 
 # This is necessary because monerod does not yet support
 # writing a PID file, which means systemd tries to guess the PID

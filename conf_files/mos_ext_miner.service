@@ -1,12 +1,12 @@
 [Unit]
-Description=Monero Solo Pool Miner
-After=network.target mos_pool.service
-Requires=mos_pool.service
+Description=Monero External Pool Miner
+After=network.target mos_changeip.service network-online.target
+Wants=network-online.target
 
 [Service]
-User=monrig
-Group=monrig
-WorkingDirectory=~
+User=root
+Group=root
+WorkingDirectory=/home/monrig/.monerodo
 
 Type=simple
 ExecStart=/home/monrig/.monerodo/run_ext_miner.sh

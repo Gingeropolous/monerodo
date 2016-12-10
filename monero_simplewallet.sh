@@ -1,7 +1,7 @@
 #!/bin/bash
 #MONERODO open monero-wallet-cli
 clear
-cd /monerodo/wallets/
+cd $FILEDIR/wallets/
 
 echo "You are now using the Monero core monero-wallet-cli program"
 echo "TO RETURN TO THE MONERODO OS, TYPE EXIT INTO SIMPLEWALLET"
