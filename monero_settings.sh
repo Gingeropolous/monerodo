@@ -13,7 +13,6 @@ do
 	echo "[2] Change CPU mining settings"
 	echo "[3] Change pool settings"
 	echo "[4] Change Monero core settings"
-	echo "[5] Manage MiniNodo Wallet Server"
 	echo "[fix] Restart wallet server, pool, and miner." 
 	echo "[r] Return to device management menu"
 	echo -e "\n"

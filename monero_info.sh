@@ -7,15 +7,11 @@ do
 	echo "================="
 	echo "Get info on the Monero daemon"
 	echo "================="
-	cat /home/$USER/.monerodo/status_poolwallet.txt
-	cat /home/$USER/.monerodo/status_nodowallet.txt
-	cat /home/$USER/.monerodo/status.txt
 	echo "!!!!!!!! Status of daemon !!!!!!!!!!"
 	monerod --rpc-bind-ip $current_ip status
 	echo "other options coming soon"
 	echo "[1] Print connections"
 	echo "[2] Print peer list"
-	echo "[3] Status of all the other things"
 	echo "[r] Return to monero settings menu"
 	echo -e "\n"
 	echo -e "Enter your selection"

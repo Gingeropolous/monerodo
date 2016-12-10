@@ -13,6 +13,7 @@ do
 	cat $FILEDIR/mine_point.txt
 	echo "================="
 	echo ""
+	echo "Please check status of miner at $current_ip/miner.php"
 	echo "You can only use one type of mining at a time"
 	echo ""
 	echo "[1] AMD local pool mining"

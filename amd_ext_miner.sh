@@ -15,12 +15,12 @@ do
 	cat $FILEDIR/mine_point.txt
 	echo "================="
         export running=$(sudo service $mos_service status)
-        ./service_status.sh
 	echo "================="
 	echo "[1] Turn $this_service on now"
 	echo "[2] Turn $this_service off"
 	echo "[3] Make $this_service start on boot"
 	echo "[4] Don't start $this_service on boot"
+	echo "[s] Service status"
 	echo "[r] Return to device management menu"
 	echo ""
 	echo -e "\n"
@@ -36,6 +36,7 @@ do
 		4) ./service_noboot.sh
                 echo "Not set to mine to external pool on boot" > $FILEDIR/mine_point.txt;;
 		r) exit ;;
+		s) ./service_status.sh;;
 	esac
 	clear
 done
