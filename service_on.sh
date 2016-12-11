@@ -3,7 +3,7 @@
 # Imports varialbes from global environment created in previous script
 
 if [ "$(echo $running | grep dead)" ] ; then
-sudo service $mos_service start & ./spin.sh && echo 0 > /dev/shm/mos_status
+./spin.sh & sudo service $mos_service start && echo 0 > /dev/shm/mos_status
 elif [ "$(echo $running | grep running)" ] ; then
 echo "This service is already running"
 fi
