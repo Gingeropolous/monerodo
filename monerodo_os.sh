@@ -43,8 +43,6 @@ do
 	echo "================="
 	echo "Monerodo Menu. Version $VERSION"
 	echo "================="
-	cat /home/$USER/.monerodo/status.txt
-	echo "================="
 	echo "[1] Monerodo device management"
 	echo "[2] Manage or create your account with Monero Core"
 	echo "[3] Restore your account from mnemonic seed"

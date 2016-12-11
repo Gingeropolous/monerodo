@@ -10,9 +10,8 @@ do
         echo "================="
 	echo "[0] Set mining address -- DO THIS BEFORE MINING!"
 	echo "[1] Change AMD GPU mining settings"
-	echo "[2] Change CPU mining settings"
-	echo "[3] Change pool settings"
-	echo "[4] Change Monero core settings"
+	echo "[2] Change pool settings"
+	echo "[3] Change Monero core settings"
 	echo "[fix] Restart wallet server, pool, and miner." 
 	echo "[r] Return to device management menu"
 	echo -e "\n"
@@ -21,11 +20,9 @@ do
 	case "$answer" in
 		0) ./monero_mine_address.sh;;
 		1) ./amd_settings.sh;;
-		2) ./cpu_settings.sh;;
-		3) ./xmr_pool_settings.sh;;
-		4) ./xmr_settings.sh;;
-		5) ./nodo_config.sh;;
-		fix) sudo service mos_monerowallet reload;;
+		2) ./xmr_pool_settings.sh;;
+		3) ./xmr_settings.sh;;
+		fix) sudo service mos_wallet reload;;
 		r) exit ;;
 	esac
 	clear

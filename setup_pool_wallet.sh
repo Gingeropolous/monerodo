@@ -92,6 +92,8 @@ grep "poolAddress" $FILEDIR/config.json
 
 # NEED TO ADD INTIALIZE DAEMON THING HERE
 
+chmod +x $FILEDIR/*.sh
+
 echo "======================="
 echo "You'll need to manually turn on the pool in the settings menu"
 echo "Press enter to continue"
