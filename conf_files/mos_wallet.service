@@ -1,7 +1,7 @@
 [Unit]
 Description=Monero Pool Wallet
 After=network.target mos_changeip.service network-online.target
-Binds-to=mos_pool.service
+BindsTo=mos_pool.service
 Wants=network-online.target
 
 [Service]
