@@ -15,6 +15,16 @@ do
 	echo "#####################################" 
 	echo "[1] Update to latest Monerodo version"
 	echo "[r] Return to device management menu"
+
+2017F1="$(awk '{print;}' $FILEDIR/2017FORK1.txt)"
+if [ "$first_time" != 'yes' ]; then
+        echo "####################"
+        echo "You need to update for the fork!!"
+        echo "####################"
+	echo "[fork]"
+fi
+
+
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer
@@ -25,7 +35,7 @@ echo "You monerodo OS has been updated. To see some changes you will need to exi
 echo "Press return to continue"
 read continue
 exit ;;
-#;;
+		fork)./upd_2017FORK1.sh
 		r) exit ;;
 	esac
 	clear
