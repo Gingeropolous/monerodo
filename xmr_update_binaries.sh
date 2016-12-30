@@ -19,6 +19,7 @@ export mos_service="mos_bitmonero"
 
 sudo cp monerod /bin
 sudo cp monero-wallet-cli /bin
+sudo cp monero-wallet-rpc /bin
 
 echo "You'll have to turn monero core on again in the settings menu. Press enter to continue"
 read goback
