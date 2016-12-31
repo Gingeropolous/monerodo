@@ -17,8 +17,8 @@ cd /home/bob/monerodo/
 
 ./first_time.sh
 
-export 2017F1="$(awk '{print;}' $FILEDIR/2017FORK1.txt)"
-if [ "$first_time" != 'yes' ]; then
+export frk=$(awk '{print;}' $FILEDIR/2017FORK1.txt)
+if [ "$frk" != 'yes' ]; then
         echo "####################"
         echo "You need to update for the fork!!"
         echo "Please go to the update menu in the device management submenu"
