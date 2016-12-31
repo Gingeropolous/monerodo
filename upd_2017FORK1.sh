@@ -24,6 +24,8 @@ cd ging_pool
 
 sudo git checkout clean
 
+sudo rm-r node_modules
+
 sudo nvm alias default v6.9.2
 
 sudo cp /monerodo/ging_pool/config_monerodo.json /monerodo/ging_pool/config.json
