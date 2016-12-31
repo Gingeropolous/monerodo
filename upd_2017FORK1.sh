@@ -28,10 +28,22 @@ git checkout clean
 
 nvm alias default v6.9.2
 
+cp config_monerodo.json config.json
+
 exit
 
+
 cd /monerodo/ging_pool
+cp config.json $FILEDIR/
 sudo npm update
+
+
+## Update IP address from repo dummy IP
+
+sed -i -e "s/333.333.333.333/$current_ip/g" $FILEDIR/config.json
+sudo cp $FILEDIR/config.json /monerodo/ging_pool/ 
+
+### Update monero bins
 
 now=$(date +"%m_%d_%Y")
 
@@ -49,9 +61,9 @@ export mos_service="mos_bitmonero"
 
 /home/bob/monerodo/service_off.sh
 
-sudo cp monerod /bin
-sudo cp monero-wallet-cli /bin
-sudo cp monero-wallet-rpc /bin
+sudo cp monerod /bin/
+sudo cp monero-wallet-cli /bin/
+sudo cp monero-wallet-rpc /bin/
 
 echo "You'll have to turn monero core on again in the settings menu. Press enter to continue"
 read goback
@@ -61,6 +73,8 @@ cp /home/bob/monerodo/conf_files/mos_poolnode.conf /home/bob/.monerodo/
 sudo cp /home/bob/monerodo/conf_files/mos_poolnode.conf /etc/init/
 
 cd /home/bob/monerodo/
+
+### Update pool wallet
 
 ./setup_pool_wallet.sh
 
