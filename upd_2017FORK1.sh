@@ -5,36 +5,32 @@ sudo apt-get -y upgrade
 sudo apt-get -y autoremove
 sudo apt-get -y remove nodejs
 sudo wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-nvm install v6.9.2
-nvm alias default v6.9.2
-n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share} /usr/local
-
-sudo su
-
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
-
 export NVM_DIR="/root/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" 
+n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share} /usr/local
 
-nvm install 6.9.2
+nvm install v6.9.2
+nvm alias default v6.9.2
+
+sudo nvm install 6.9.2
 
 cd /monerodo/
 
-git clone https://github.com/Gingeropolous/cryptonote-xmr-pool.git ging_pool
+sudo git clone https://github.com/Gingeropolous/cryptonote-xmr-pool.git ging_pool
 
 cd ging_pool
 
-git checkout clean
+sudo git checkout clean
 
-nvm alias default v6.9.2
+sudo nvm alias default v6.9.2
 
-cp config_monerodo.json config.json
-
-exit
-
+sudo cp /monerodo/ging_pool/config_monerodo.json /monerodo/ging_pool/config.json
 
 cd /monerodo/ging_pool
-cp config.json $FILEDIR/
+sudo cp /monerodo/ging_pool/config.json $FILEDIR/config.json
+
+echo "##### STARTING POOL COMPILE ######"
 sudo npm update
 
 
@@ -50,6 +46,8 @@ now=$(date +"%m_%d_%Y")
 cd /home/bob/monero_files/
 mkdir monero_$now
 cd monero_$now
+
+rm linux64*
 
 wget https://downloads.getmonero.org/linux64
 tar -xjvf linux64

@@ -7,6 +7,7 @@ cd /home/bob/monero_files/
 mkdir monero_$now
 cd monero_$now
 
+rm linux64*
 wget https://downloads.getmonero.org/linux64
 tar -xjvf linux64
 
