@@ -107,7 +107,7 @@ export mos_service="mos_mininodo"
 
 mv $FILEDIR/mos_mininodo.conf $FILEDIR/mos_mininodo.previous
 cp /home/bob/monerodo/conf_files/mos_mininodo.base $FILEDIR/mos_mininodo.conf
-echo "exec nodejs MiniNodo.js -p $nodoservpass" >> $FILEDIR/mos_mininodo.conf
+echo "exec node MiniNodo.js -p $nodoservpass" >> $FILEDIR/mos_mininodo.conf
 
 sudo cp $FILEDIR/mos_mininodo.conf /etc/init/
 sudo cp $FILEDIR/mos_nodowallet.conf /etc/init/
