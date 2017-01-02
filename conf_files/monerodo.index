@@ -5,6 +5,6 @@ version=3.2
 
 #############
 
-version 3.2 fixed the mininodo server that broke during changes to 3.1
+3.2 fixed the mininodo server that broke during changes to 3.1
 
-version 3.1 changed things for the fork, including the daemon, wallet-rpc bin names, and the repo used for the pool. 
+3.1 changed things for the fork, including the daemon, wallet-rpc bin names, and the repo used for the pool. 
