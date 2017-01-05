@@ -99,6 +99,7 @@ echo ""
 echo "yes" > $FILEDIR/2017FORK1.txt
 
 sudo cp /home/bob/monerodo/conf_files/change_ip.sh /monerodo/
+sudo chmod +x /monerodo/change_ip.sh
 
 echo "Your Monerodo has been updated for the upcoming fork. Thanks for using the Monerodo. Please consider donating for continued development."
 echo "The donation address is: 44UW4sPKb4XbWHm8PXr6K8GQi7jUs9i7t2mTsjDn2zK7jYZwNERfoHaC1Yy4PYs1eTCZ9766hkB6RLUf1y95EvCQNpCZnuu"
