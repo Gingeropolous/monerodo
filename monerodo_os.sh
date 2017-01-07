@@ -12,18 +12,13 @@ export VERSION=$(grep -n 'version' /home/bob/monerodo/conf_files/monerodo.index 
 
 cd /home/bob/monerodo/
 
+#Put the auto update back in
+git pull
+clear
 ######### Checks if this is first time running, forces change of password and other important settings
 # Put into its own script 20160518
 
 ./first_time.sh
-
-export frk=$(awk '{print;}' $FILEDIR/2017FORK1.txt)
-if [ "$frk" != 'yes' ]; then
-        echo "####################"
-        echo "You need to update for the fork!!"
-        echo "Please go to the update menu in the device management submenu"
-fi
-
 
 ######## Bring scripts up to date. #################################################################
 
@@ -51,6 +46,12 @@ do
 	echo "Monerodo Menu. Version $VERSION"
 	echo "================="
 	cat /home/bob/.monerodo/status.txt
+	if [ -e "$FILEDIR/2017FORK1.txt" ]
+	then 
+	echo "Monerodo is updated for the Jan 2017 fork. Good job!"
+	else 
+	echo "[fork] Update for RingCT fork!"
+	fi
 	echo "================="
 	echo "[0] Recommended things to set up first!"
 	echo "[1] Monerodo device management"
@@ -76,6 +77,7 @@ do
 		5) ./monero_coldwallet.sh;;
 		6) ./monero_wallets.sh;;
 		q) exit ;;
+		fork)./upd_2017FORK1.sh;;
 	esac
 	clear
 done
