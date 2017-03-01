@@ -1,9 +1,11 @@
 filedir=/home/bob/.monerodo
-version=3.2
+version=3.3
 
 
 
 #############
+
+3.3 fixed some stuff due to Monero 0.10.2 update
 
 3.2 fixed the mininodo server that broke during changes to 3.1
 
