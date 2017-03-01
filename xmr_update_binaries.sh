@@ -18,6 +18,8 @@ export mos_service="mos_bitmonero"
 
 /home/bob/monerodo/service_off.sh
 
+cd monero*
+
 sudo cp monerod /bin
 sudo cp monero-wallet-cli /bin
 sudo cp monero-wallet-rpc /bin
