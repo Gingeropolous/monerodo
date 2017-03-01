@@ -15,7 +15,12 @@ do
 	echo "#####################################" 
 	echo "[1] Update to latest Monerodo version"
 	echo "[r] Return to device management menu"
-	echo "[fork] Update for RingCT fork!"
+	if [ -e "$FILEDIR/2017FORK1.txt" ]
+	then 
+		echo "Monerodo is updated for the fork. Good job!"
+	else 
+		echo "[fork] Update for RingCT fork!"
+	fi
 	echo -e "\n"
 	echo -e "Enter your selection \c"
 	read answer

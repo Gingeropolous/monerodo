@@ -23,8 +23,7 @@ if [[ $current_ip != $last_ip ]]; then
 	# Changes pool configuration and website urls and blanket the home directory.
 	# Might mess with git. 
 	find /var/www/ -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
-	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/zone_pool/*
-	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/sam_pool/*
+	sed -i -e "s/$last_ip/$current_ip/g" /monerodo/ging_pool/*
 	sudo find /home/bob/ -type f -exec sed -i -e "s/$last_ip/$current_ip/g" {} \;
 
         # sudo service mos_bitmonero start  # Removed 20160827 because if the daemon is supposed to be off this doesn't make sense

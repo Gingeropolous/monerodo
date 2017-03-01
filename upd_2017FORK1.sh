@@ -1,5 +1,16 @@
 #1/bin/bash/
 
+./important.sh
+echo "This can take a while. You will also have to reconfigure your pool server wallet and mininodo wallet when done (it will load them automatically)."
+echo "Ready !?!?!?!?! Type yes or no"
+read update
+case "$update" in
+no) echo "OK, but you need to upgrade! Press enter to continue"
+read goback
+exit;;
+
+yes)
+
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y autoremove
@@ -76,12 +87,30 @@ sudo cp /home/bob/monerodo/conf_files/mos_poolnode.conf /etc/init/
 cd /home/bob/monerodo/
 
 ### Update pool wallet
-
+clear
+./important.sh
+echo "Time to reconfigure the pool wallet!!"
+echo ""
 ./setup_pool_wallet.sh
 
+./important.sh
+echo "Time to reconfigure the MiniNodo wallet!"
+echo ""
+./setup_mininodo_wallet.sh
+
 echo "yes" > $FILEDIR/2017FORK1.txt
+
+sudo cp /home/bob/monerodo/conf_files/change_ip.sh /monerodo/
+sudo chmod +x /monerodo/change_ip.sh
 
 echo "Your Monerodo has been updated for the upcoming fork. Thanks for using the Monerodo. Please consider donating for continued development."
 echo "The donation address is: 44UW4sPKb4XbWHm8PXr6K8GQi7jUs9i7t2mTsjDn2zK7jYZwNERfoHaC1Yy4PYs1eTCZ9766hkB6RLUf1y95EvCQNpCZnuu"
 echo "Please press return to continue"
 read goback
+;;
+
+*) echo "OK, but you need to upgrade! Press enter to continue"
+read goback
+exit;;
+
+esac
